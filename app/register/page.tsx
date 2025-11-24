@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Eye, EyeOff, User, Mail, Lock } from "lucide-react"
+import { Eye, EyeOff, User, Mail, Lock, CircleChevronLeft } from "lucide-react"
 import Link from "next/link"
 
 export default function RegisterPage() {
@@ -59,77 +59,84 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-yellow-50 to-green-100 px-4 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-green-800/5 via-transparent to-yellow-500/5"></div>
+    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-red-200 to-red-300 px-4 relative overflow-hidden">
+      <div className="absolute inset-0 bg-linear-to-br from-green-800/5 via-transparent to-yellow-500/5"></div>
       <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width%3D%2260%22 height%3D%2260%22 viewBox%3D%220 0 60 60%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg fill%3D%22none%22 fillRule%3D%22evenodd%22%3E%3Cg fill%3D%22%23059669%22 fillOpacity%3D%220.03%22%3E%3Ccircle cx%3D%2230%22 cy%3D%2230%22 r%3D%224%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-30"></div>
 
-      <Card className="w-full max-w-md relative z-10 border-green-200 shadow-2xl bg-white/95 backdrop-blur-sm">
-        <CardHeader className="text-center bg-gradient-to-r from-green-800 to-green-700 text-white rounded-t-lg">
-          <div className="mx-auto w-16 h-16 rounded-full flex items-center justify-center bg-gradient-to-r from-yellow-500 to-yellow-600 mb-2">
-            <User className="w-8 h-8 text-white" />
+      <Card className="w-full max-w-md relative z-10 border-red-200 shadow-2xl bg-white/95 backdrop-blur-sm">
+        <CardHeader className="text-center bg-linear-to-r from-red-800 to-red-700 text-white rounded-t-lg">
+          <div className="flex">
+            <div className="space-x-2 flex items-center justify-start">
+              <Link href="/">
+                <CircleChevronLeft />
+              </Link>
+            </div>
+            <div className="flex mx-auto w-16 h-16 rounded-full items-center justify-center bg-linear-to-r from-red-500 to-red-600 mb-2">
+              <User className="w-8 h-8 text-white" />
+            </div>
           </div>
           <CardTitle className="text-3xl font-bold">Join Eurotel</CardTitle>
-          <CardDescription className="text-green-100">
+          <CardDescription className="text-red-100">
             Create your account to start booking luxury stays
           </CardDescription>
         </CardHeader>
         <CardContent className="p-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="username" className="text-sm font-medium text-green-800">
+              <Label htmlFor="username" className="text-sm font-medium text-red-800">
                 Username
               </Label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-green-600" />
+                <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-red-600" />
                 <Input
                   id="username"
                   type="text"
                   placeholder="Enter your username"
                   value={formData.username}
                   onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                  className="pl-10 border-green-200 focus:border-green-500 focus:ring-green-500"
+                  className="pl-10 border-red-200 focus:border-red-500 focus:ring-red-500"
                   required
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-sm font-medium text-green-800">
+              <Label htmlFor="email" className="text-sm font-medium text-red-800">
                 Email
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-green-600" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-red-600" />
                 <Input
                   id="email"
                   type="email"
                   placeholder="Enter your email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="pl-10 border-green-200 focus:border-green-500 focus:ring-green-500"
+                  className="pl-10 border-red-200 focus:border-red-500 focus:ring-red-500"
                   required
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="password" className="text-sm font-medium text-green-800">
+              <Label htmlFor="password" className="text-sm font-medium text-red-800">
                 Password
               </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-green-600" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-red-600" />
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                  className="pl-10 pr-10 border-green-200 focus:border-green-500 focus:ring-green-500"
+                  className="pl-10 pr-10 border-red-200 focus:border-red-500 focus:ring-red-500"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-green-600 hover:text-green-800"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-600 hover:text-red-800"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -137,24 +144,24 @@ export default function RegisterPage() {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="confirmPassword" className="text-sm font-medium text-green-800">
+              <Label htmlFor="confirmPassword" className="text-sm font-medium text-red-800">
                 Confirm Password
               </Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-green-600" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-red-600" />
                 <Input
                   id="confirmPassword"
                   type={showConfirmPassword ? "text" : "password"}
                   placeholder="Confirm your password"
                   value={formData.confirmPassword}
                   onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                  className="pl-10 pr-10 border-green-200 focus:border-green-500 focus:ring-green-500"
+                  className="pl-10 pr-10 border-red-200 focus:border-red-500 focus:ring-red-500"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-green-600 hover:text-green-800"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-red-600 hover:text-red-800"
                 >
                   {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -163,7 +170,7 @@ export default function RegisterPage() {
 
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-yellow-600 to-yellow-700 hover:from-yellow-700 hover:to-yellow-800 text-white font-semibold py-3 shadow-lg transition-all duration-200"
+              className="w-full bg-linear-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-semibold py-3 shadow-lg transition-all duration-200"
               disabled={isLoading}
             >
               {isLoading ? "Creating Account..." : "Create Account"}
@@ -173,7 +180,7 @@ export default function RegisterPage() {
           <div className="mt-6 text-center">
             <p className="text-sm text-gray-600">
               Already have an account?{" "}
-              <Link href="/login" className="text-green-700 hover:text-green-800 hover:underline font-medium">
+              <Link href="/login" className="text-red-700 hover:text-red-800 hover:underline font-medium">
                 Sign in here
               </Link>
             </p>

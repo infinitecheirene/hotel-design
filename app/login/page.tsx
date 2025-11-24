@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { useAuth } from "@/contexts/auth-context"
 import { CustomLoader } from "@/components/custom-loader"
-import { Eye, EyeOff, LogIn } from "lucide-react"
+import { Eye, EyeOff, LogIn, CircleChevronLeft } from "lucide-react"
 
 export default function LoginPage() {
   const [username, setUsername] = useState("")
@@ -60,19 +60,21 @@ export default function LoginPage() {
   return (
     <>
       <CustomLoader isLoading={isLoading || isSubmitting} />
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 via-yellow-50 to-green-100 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-800/5 via-transparent to-yellow-500/5"></div>
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fillRule=evenodd%3E%3Cg fill=%23059669 fillOpacity=0.03%3E%3Ccircle cx=30 cy=30 r=4/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
-
-        <Card className="w-full max-w-md relative z-10 border-green-200 shadow-2xl bg-white/95 backdrop-blur-sm">
-          <CardHeader className="text-center bg-gradient-to-r from-green-800 to-green-700 text-white rounded-t-lg">
-            <CardTitle className="text-3xl font-bold">Welcome Back</CardTitle>
-            <CardDescription className="text-green-100">Sign in to your Eurotel account to continue</CardDescription>
+      <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-red-200 to-red-300 px-4 relative overflow-hidden">
+        <Card className="w-full max-w-md z-10 border-red-200 shadow-2xl bg-white/95 backdrop-blur-sm">
+          <CardHeader className="text-center bg-linear-to-r from-red-800 to-red-700 text-white">
+            <div className="flex items-center space-x-2 mb-4">
+              <Link href="/">
+                <CircleChevronLeft />
+              </Link>
+              <CardTitle className="text-3xl font-bold ml-4 sm:ml-14">Welcome Back</CardTitle>
+            </div>
+            <CardDescription className="text-red-100">Sign in to your Eurotel account to continue</CardDescription>
           </CardHeader>
           <CardContent className="p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="username" className="text-green-800 font-medium">
+                <Label htmlFor="username" className="text-red-800 font-medium text-md">
                   Username
                 </Label>
                 <Input
@@ -82,12 +84,12 @@ export default function LoginPage() {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   disabled={isSubmitting}
-                  className="w-full border-green-200 focus:border-green-500 focus:ring-green-500"
+                  className="w-full border-red-200 focus:border-red-500 focus:ring-red-500"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-green-800 font-medium">
+                <Label htmlFor="password" className="text-red-800 font-medium text-md">
                   Password
                 </Label>
                 <div className="relative">
@@ -98,13 +100,13 @@ export default function LoginPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     disabled={isSubmitting}
-                    className="w-full pr-10 border-green-200 focus:border-green-500 focus:ring-green-500"
+                    className="w-full pr-10 border-red-200 focus:border-red-500 focus:ring-red-500"
                   />
                   <Button
                     type="button"
                     variant="ghost"
                     size="sm"
-                    className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-green-50 text-green-600"
+                    className="absolute right-0 top-0 h-full px-3 py-2 text-red-600"
                     onClick={() => setShowPassword(!showPassword)}
                     disabled={isSubmitting}
                   >
@@ -115,7 +117,7 @@ export default function LoginPage() {
 
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-green-700 to-green-800 hover:from-green-800 hover:to-green-900 text-white font-semibold py-3 shadow-lg transition-all duration-200"
+                className="w-full bg-linear-to-r from-red-700 to-red-800 hover:from-red-800 hover:to-red-900 text-white font-semibold py-3 shadow-lg transition-all duration-200"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
@@ -135,23 +137,11 @@ export default function LoginPage() {
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-600">
                 Don&apos;t have an account?{" "}
-                <Link href="/register" className="text-green-700 hover:text-green-800 hover:underline font-medium">
+                <Link href="/register" className="text-red-700 hover:text-red-800 hover:underline font-medium">
                   Sign up here
                 </Link>
               </p>
             </div>
-
-{/*             <div className="mt-4 p-4 bg-gradient-to-r from-yellow-50 to-green-50 border border-yellow-200 rounded-lg">
-              <p className="text-xs text-green-800 text-center mb-2 font-semibold">Demo Credentials:</p>
-              <div className="text-xs text-center space-y-1 text-green-700">
-                <p>
-                  <strong className="text-yellow-700">Username:</strong> demo
-                </p>
-                <p>
-                  <strong className="text-yellow-700">Password:</strong> password123
-                </p>
-              </div>
-            </div> */}
           </CardContent>
         </Card>
       </div>
