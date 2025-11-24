@@ -18,7 +18,7 @@ export function Navbar() {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/rooms", label: "Rooms" },
-    { href: "/contact", label: "Contact Us" },
+    { href: "/contact", label: "Contact" },
   ]
 
   const isActive = (href: string) => {
@@ -34,7 +34,7 @@ export function Navbar() {
   }
 
   return (
-    <nav className="bg-background border-b border-border sticky top-0 z-40">
+    <nav className="bg-red-50 border-b border-border sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -48,8 +48,8 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
-                  isActive(item.href) ? "text-primary border-b-2 border-primary" : "text-foreground hover:text-primary"
+                className={`px-3 py-2 text-sm font-medium text-red-900 hover:text-red-700 transition-colors ${
+                  isActive(item.href) ? "border-b-2 border-primary" : "text-foreground hover:text-red-700"
                 }`}
               >
                 {item.label}
@@ -58,7 +58,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Auth Buttons + PWA Install */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center text-red-900 hover:text-red-700 space-x-4">
             {/* PWA Install Text */}
             <PWAInstallButton />
             
@@ -114,8 +114,8 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`block px-3 py-2 text-base font-medium transition-colors ${
-                    isActive(item.href) ? "text-primary bg-muted" : "text-foreground hover:text-primary hover:bg-muted"
+                  className={`block px-3 py-2 text-base text-red-900 hover:text-red-700 font-medium transition-colors ${
+                    isActive(item.href) ? "bg-muted" : "text-foreground hover:bg-muted"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

@@ -49,7 +49,7 @@ export default function HeroSection() {
     return (
       <>
         <span className="text-white drop-shadow-2xl">{beforeHighlight}</span>
-        <span className="bg-gradient-to-r font-bold from-red-500 via-red-500 to-red-600 bg-clip-text text-transparent italic drop-shadow-lg">
+        <span className="bg-linear-to-r font-bold from-red-500 via-red-500 to-red-600 bg-clip-text text-transparent italic drop-shadow-lg">
           {highlight}
         </span>
         <span className="text-white drop-shadow-2xl">{afterHighlight}</span>
@@ -73,8 +73,8 @@ export default function HeroSection() {
               style={{ backgroundImage: `url('${slide.image}')` }}
             />
             {/* Softer overlays */}
-            <div className="absolute inset-0 bg-gradient-to-b from-red-50/20 via-black/10 to-red-100/20" />
-            <div className="absolute inset-0 bg-gradient-to-r from-red-50/20 via-transparent to-red-100/20" />
+            <div className="absolute inset-0 bg-linear-to-b from-red-50/20 via-black/10 to-red-100/20" />
+            <div className="absolute inset-0 bg-linear-to-r from-red-50/20 via-transparent to-red-100/20" />
           </div>
         ))}
       </div>
@@ -127,12 +127,12 @@ export default function HeroSection() {
             onClick={() => setCurrentSlide(index)}
             className={`relative transition-all duration-500 ${
               index === currentSlide
-                ? "w-12 h-1 bg-gradient-to-r from-red-400 to-red-500"
+                ? "w-12 h-1 bg-linear-to-r from-red-400 to-red-500"
                 : "w-8 h-1 bg-white/40 hover:bg-red-400/70"
             }`}
           >
             {index === currentSlide && (
-              <div className="absolute inset-0 bg-gradient-to-r from-red-400 to-red-500 rounded-full shadow-lg shadow-red-400/50"></div>
+              <div className="absolute inset-0 bg-linear-to-r from-red-400 to-red-500 rounded-full shadow-lg shadow-red-400/50"></div>
             )}
           </button>
         ))}

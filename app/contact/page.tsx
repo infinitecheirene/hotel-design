@@ -3,13 +3,15 @@
 import type React from "react"
 
 import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
 import { CustomLoader } from "@/components/custom-loader"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Phone, Mail, Clock, Send, MessageCircle, CheckCircle2, Building2, HeartHandshake } from "lucide-react"
+import { Phone, Mail, Clock, Send, MessageCircle, CheckCircle2, Building2, HeartHandshake, MapPin } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function ContactPage() {
   const [pageLoading, setPageLoading] = useState(true)
@@ -60,77 +62,55 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-yellow-50">
-      {/* Enhanced Hero Section */}
-      <div className="relative h-[70vh] overflow-hidden">
-        <Image src="/lobby.webp" alt="Hotel Lobby" fill className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-br from-green-900/90 via-green-800/70 to-transparent" />
-
-        {/* Floating decoration elements */}
-        <div className="absolute top-20 left-10 w-32 h-32 bg-yellow-400/20 rounded-full blur-xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-48 h-48 bg-green-400/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
-
-        <div className="absolute inset-0 flex items-center justify-center text-center">
-          <div className="max-w-5xl px-4 space-y-8">
-            <div className="space-y-6">
-              <h1 className="text-6xl md:text-7xl font-black text-white leading-tight">
-                Let&apos;s{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-300">
-                  Connect
-                </span>
-              </h1>
-              <p className="text-xl md:text-2xl text-green-100 max-w-3xl mx-auto leading-relaxed">
-                Your perfect stay begins with a conversation. Our dedicated team is ready to make your experience
-                extraordinary.
-              </p>
-            </div>
-
-            {/* Quick contact buttons */}
-            <div className="flex flex-wrap justify-center gap-4 pt-6">
-              <Button className="bg-white/20 hover:bg-white/30 text-white border border-white/30 backdrop-blur-sm px-6 py-3 rounded-full transition-all duration-300 hover:scale-105">
-                <Phone className="w-4 h-4 mr-2" />
-                Call Now
-              </Button>
-              <Button className="bg-yellow-500 hover:bg-yellow-400 text-green-900 font-semibold px-6 py-3 rounded-full transition-all duration-300 hover:scale-105">
-                <Mail className="w-4 h-4 mr-2" />
-                Email Us
-              </Button>
-            </div>
-          </div>
+    <main className="min-h-screen">
+      <section className="relative py-20 bg-linear-to-br from-red-50 to-red-100">
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+          style={{
+            backgroundImage: "url('/lobby.webp')",
+          }}
+        />
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-red-700 mb-6 text-balance">
+            Let's <span className="text-red-900 underline">Connect</span>
+          </h1>
+          <p className="text-lg md:text-xl text-red-800 mb-8 text-pretty max-w-3xl mx-auto">
+            Your perfect stay begins with a conversation. Our dedicated team is ready to make your experience extraordinary.
+          </p>
         </div>
-      </div>
+      </section>
 
       {/* Main Content Section */}
-      <div className="max-w-7xl mx-auto px-4 py-20">
+      <section className="max-w-7xl mx-auto px-4 py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left Column - Contact Information */}
-          <div className="space-y-8">
+          <section className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-4xl font-black text-green-800 leading-tight">
+              <h2 className="text-4xl font-black text-red-900 leading-tight">
                 Ready to Create
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-yellow-400">
+                <span className="block text-transparent bg-clip-text bg-linear-to-r from-red-600 to-red-500">
                   Unforgettable Memories?
                 </span>
               </h2>
-              <p className="text-lg text-green-600 leading-relaxed">
+              <p className="text-lg text-red-700 leading-relaxed">
                 Whether you&apos;re planning a business trip, romantic getaway, or family vacation, our team is here to
                 ensure every detail is perfect.
               </p>
             </div>
 
             {/* Contact Information Card */}
-            <Card className="border-2 border-green-100 hover:border-green-200 transition-all duration-300 hover:shadow-xl group overflow-hidden">
+            <Card className="border-2 border-red-100 hover:border-red-200 transition-all duration-300 hover:shadow-xl group overflow-hidden">
               <CardContent className="p-8">
                 <div className="space-y-8">
                   {/* Visit Our Hotel */}
                   <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-400 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                      <Building2 className="w-7 h-7 text-green-900" />
+                    <div className="w-14 h-14 rounded-xl bg-red-300 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300">
+                      <Building2 className="w-7 h-7 text-red-900" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-green-800 text-lg mb-3">Visit Our Hotel</h3>
-                      <div className="text-green-600 space-y-1">
-                        <p className="font-bold text-green-800">Eurotel Luxury Hotel</p>
+                      <h3 className="font-bold text-red-900 underline text-lg mb-3">Visit Our Hotel</h3>
+                      <div className="text-red-700 space-y-1">
+                        <p className="font-bold text-red-800">Eurotel Luxury Hotel</p>
                         <p>123 Luxury Avenue</p>
                         <p>Downtown District, City 12345</p>
                       </div>
@@ -139,23 +119,23 @@ export default function ContactPage() {
 
                   {/* Call Us Anytime */}
                   <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-400 flex items-center justify-center flex-shrink-0">
-                      <Phone className="w-7 h-7 text-green-900" />
+                    <div className="w-14 h-14 rounded-xl bg-red-300 flex items-center justify-center shrink-0">
+                      <Phone className="w-7 h-7 text-red-900" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-green-800 text-lg mb-3">Call Us Anytime</h3>
-                      <div className="text-green-600 space-y-2">
+                      <h3 className="font-bold text-red-900 underline text-lg mb-3">Call Us Anytime</h3>
+                      <div className="text-red-700 space-y-2">
                         <div className="flex flex-col sm:flex-row sm:justify-between">
-                          <span className="font-bold text-green-800">Reservations:</span>
-                          <span className="text-green-800 font-semibold">+1 (555) 123-4567</span>
+                          <span className="font-bold text-red-800">Reservations:</span>
+                          <span className="text-red-700 font-semibold">+1 (555) 123-4567</span>
                         </div>
                         <div className="flex flex-col sm:flex-row sm:justify-between">
-                          <span className="font-bold text-green-800">Concierge:</span>
-                          <span className="text-green-800 font-semibold">+1 (555) 123-4568</span>
+                          <span className="font-bold text-red-800">Concierge:</span>
+                          <span className="text-red-700 font-semibold">+1 (555) 123-4568</span>
                         </div>
                         <div className="flex flex-col sm:flex-row sm:justify-between">
-                          <span className="font-bold text-green-800">Emergency:</span>
-                          <span className="text-green-800 font-semibold">+1 (555) 123-4569</span>
+                          <span className="font-bold text-red-800">Emergency:</span>
+                          <span className="text-red-700 font-semibold">+1 (555) 123-4569</span>
                         </div>
                       </div>
                     </div>
@@ -163,23 +143,23 @@ export default function ContactPage() {
 
                   {/* Email Support */}
                   <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-400 flex items-center justify-center flex-shrink-0">
-                      <Mail className="w-7 h-7 text-green-900" />
+                    <div className="w-14 h-14 rounded-xl bg-red-300 flex items-center justify-center shrink-0">
+                      <Mail className="w-7 h-7 text-red-900" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-green-800 text-lg mb-3">Email Support</h3>
-                      <div className="text-green-600 space-y-2">
+                      <h3 className="font-bold text-red-900 underline text-lg mb-3">Email Support</h3>
+                      <div className="text-red-600 space-y-2">
                         <div className="flex flex-col sm:flex-row sm:justify-between">
-                          <span className="font-bold text-green-800">General:</span>
-                          <span className="text-green-800 font-semibold">info@eurotel.com</span>
+                          <span className="font-bold text-red-800">General:</span>
+                          <span className="text-red-700 font-semibold">info@eurotel.com</span>
                         </div>
                         <div className="flex flex-col sm:flex-row sm:justify-between">
-                          <span className="font-bold text-green-800">Bookings:</span>
-                          <span className="text-green-800 font-semibold">reservations@eurotel.com</span>
+                          <span className="font-bold text-red-800">Bookings:</span>
+                          <span className="text-red-700 font-semibold">reservations@eurotel.com</span>
                         </div>
                         <div className="flex flex-col sm:flex-row sm:justify-between">
-                          <span className="font-bold text-green-800">Events:</span>
-                          <span className="text-green-800 font-semibold">events@eurotel.com</span>
+                          <span className="font-bold text-red-800">Events:</span>
+                          <span className="text-red-700 font-semibold">events@eurotel.com</span>
                         </div>
                       </div>
                     </div>
@@ -187,23 +167,23 @@ export default function ContactPage() {
 
                   {/* Service Hours */}
                   <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-400 flex items-center justify-center flex-shrink-0">
-                      <Clock className="w-7 h-7 text-green-900" />
+                    <div className="w-14 h-14 rounded-xl bg-red-300 flex items-center justify-center shrink-0">
+                      <Clock className="w-7 h-7 text-red-900" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-green-800 text-lg mb-3">Service Hours</h3>
-                      <div className="text-green-600 space-y-2">
+                      <h3 className="font-bold text-red-900 underline text-lg mb-3">Service Hours</h3>
+                      <div className="text-red-600 space-y-2">
                         <div className="flex flex-col sm:flex-row sm:justify-between">
-                          <span className="font-bold text-green-800">Front Desk:</span>
-                          <span className="text-green-800 font-semibold">24/7</span>
+                          <span className="font-bold text-red-800">Front Desk:</span>
+                          <span className="text-red-700 font-semibold">24/7</span>
                         </div>
                         <div className="flex flex-col sm:flex-row sm:justify-between">
-                          <span className="font-bold text-green-800">Concierge:</span>
-                          <span className="text-green-800 font-semibold">6 AM - 10 PM</span>
+                          <span className="font-bold text-red-800">Concierge:</span>
+                          <span className="text-red-700 font-semibold">6 AM - 10 PM</span>
                         </div>
                         <div className="flex flex-col sm:flex-row sm:justify-between">
-                          <span className="font-bold text-green-800">Restaurant:</span>
-                          <span className="text-green-800 font-semibold">6 AM - 11 PM</span>
+                          <span className="font-bold text-red-800">Restaurant:</span>
+                          <span className="text-red-700 font-semibold">6 AM - 11 PM</span>
                         </div>
                       </div>
                     </div>
@@ -213,9 +193,9 @@ export default function ContactPage() {
             </Card>
 
             {/* Why Choose Us */}
-            <Card className="bg-gradient-to-r from-green-700 to-green-600 border-0 text-white overflow-hidden">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6 flex items-center">
+            <Card className="bg-linear-to-r from-red-700 to-red-600 border-0 text-white overflow-hidden">
+              <CardContent className="p-5">
+                <h3 className="text-2xl sm:text-3xl font-bold mb-6 flex items-center">
                   <HeartHandshake className="w-6 h-6 mr-3" />
                   Why Guests Love Us
                 </h3>
@@ -227,42 +207,42 @@ export default function ContactPage() {
                     "Concierge services for local experiences",
                   ].map((feature, index) => (
                     <div key={index} className="flex items-center gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+                      <CheckCircle2 className="w-5 h-5 text-orange-300 shrink-0" />
                       <span className="text-green-100">{feature}</span>
                     </div>
                   ))}
                 </div>
               </CardContent>
             </Card>
-          </div>
+          </section>
 
           {/* Right Column - Contact Form */}
-          <div className="sticky top-8">
-            <div className="border-2 border-green-200 shadow-2xl overflow-hidden rounded-lg bg-white">
-              <div className="bg-gradient-to-r from-green-800 to-green-700 text-white relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-400/20 rounded-full -translate-y-16 translate-x-16"></div>
+          <section>
+            <div className="border-2 border-red-200 shadow-2xl overflow-hidden rounded-lg bg-white">
+              <div className="bg-linear-to-r from-red-800 to-red-700 text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-red-400/20 rounded-full -translate-y-16 translate-x-16"></div>
                 <div className="relative p-8">
                   <h3 className="text-3xl font-black text-white flex items-center mb-2">
                     <MessageCircle className="w-8 h-8 mr-3" />
                     Get in Touch
                   </h3>
-                  <p className="text-green-100 text-lg">Send us a message and we&apos;ll respond within 30 minutes</p>
+                  <p className="text-red-100 text-lg">Send us a message and we&apos;ll respond within 30 minutes</p>
                 </div>
               </div>
 
               <div className="p-8">
                 {submitted ? (
                   <div className="text-center py-12">
-                    <div className="w-24 h-24 rounded-full bg-gradient-to-r from-green-600 to-green-500 flex items-center justify-center mx-auto mb-6 animate-bounce">
+                    <div className="w-24 h-24 rounded-full bg-linear-to-r from-red-600 to-red-500 flex items-center justify-center mx-auto mb-6 animate-bounce">
                       <CheckCircle2 className="w-12 h-12 text-white" />
                     </div>
-                    <h3 className="text-3xl font-bold text-green-800 mb-4">Message Sent!</h3>
-                    <p className="text-green-600 mb-8 text-lg">
+                    <h3 className="text-3xl font-bold text-red-800 mb-4">Message Sent!</h3>
+                    <p className="text-red-600 mb-8 text-lg">
                       Thank you for reaching out. Our team will contact you within 30 minutes.
                     </p>
                     <Button
                       onClick={() => setSubmitted(false)}
-                      className="bg-gradient-to-r from-green-700 to-green-600 hover:from-green-800 hover:to-green-700 px-8 py-3 rounded-full font-semibold"
+                      className="bg-linear-to-r from-red-700 to-red-600 hover:from-red-800 hover:to-red-700 px-8 py-3 rounded-full font-semibold"
                     >
                       Send Another Message
                     </Button>
@@ -271,25 +251,25 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="block text-sm font-bold text-green-800">Full Name *</label>
+                        <label className="block text-sm font-bold text-red-800">Full Name *</label>
                         <Input
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          className="border-2 border-green-200 focus:border-green-500 focus:ring-green-500 h-12 rounded-lg"
+                          className="border-2 border-red-200 focus:border-red-500 focus:ring-red-500 h-12 rounded-lg"
                           placeholder="John Smith"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="block text-sm font-bold text-green-800">Email Address *</label>
+                        <label className="block text-sm font-bold text-red-800">Email Address *</label>
                         <Input
                           name="email"
                           type="email"
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="border-2 border-green-200 focus:border-green-500 focus:ring-green-500 h-12 rounded-lg"
+                          className="border-2 border-red-200 focus:border-red-500 focus:ring-red-500 h-12 rounded-lg"
                           placeholder="john@example.com"
                         />
                       </div>
@@ -297,37 +277,37 @@ export default function ContactPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-2">
-                        <label className="block text-sm font-bold text-green-800">Phone Number</label>
+                        <label className="block text-sm font-bold text-red-800">Phone Number</label>
                         <Input
                           name="phone"
                           type="tel"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="border-2 border-green-200 focus:border-green-500 focus:ring-green-500 h-12 rounded-lg"
+                          className="border-2 border-red-200 focus:border-red-500 focus:ring-red-500 h-12 rounded-lg"
                           placeholder="+1 (555) 123-4567"
                         />
                       </div>
                       <div className="space-y-2">
-                        <label className="block text-sm font-bold text-green-800">Subject *</label>
+                        <label className="block text-sm font-bold text-red-800">Subject *</label>
                         <Input
                           name="subject"
                           value={formData.subject}
                           onChange={handleChange}
                           required
-                          className="border-2 border-green-200 focus:border-green-500 focus:ring-green-500 h-12 rounded-lg"
+                          className="border-2 border-red-200 focus:border-red-500 focus:ring-red-500 h-12 rounded-lg"
                           placeholder="How can we help you?"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="block text-sm font-bold text-green-800">Your Message *</label>
+                      <label className="block text-sm font-bold text-red-800">Your Message *</label>
                       <Textarea
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        className="h-48 text-lg border-2 border-green-200 focus:border-green-500 focus:ring-green-500 resize-none rounded-lg"
+                        className="h-48 text-lg border-2 border-red-200 focus:border-red-500 focus:ring-red-500 resize-none rounded-lg"
                         placeholder="Tell us about your inquiry, special requests, or how we can make your stay perfect..."
                       />
                     </div>
@@ -335,7 +315,7 @@ export default function ContactPage() {
                     <Button
                       type="submit"
                       disabled={loading}
-                      className="w-full bg-gradient-to-r from-green-700 to-green-600 hover:from-green-800 hover:to-green-700 disabled:from-gray-400 disabled:to-gray-400 h-14 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+                      className="w-full bg-linear-to-r from-red-700 to-red-600 hover:from-red-800 hover:to-red-700 disabled:from-gray-400 disabled:to-gray-400 h-14 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
                     >
                       {loading ? (
                         <>
@@ -350,16 +330,97 @@ export default function ContactPage() {
                       )}
                     </Button>
 
-                    <p className="text-sm text-green-600 text-center">
+                    <p className="text-sm text-red-600 text-center">
                       We respect your privacy and will never share your information with third parties.
                     </p>
                   </form>
                 )}
               </div>
             </div>
-          </div>
+
+            {/* Google Maps Embed */}
+            <div className="my-8 border border-red-200 shadow-2xl overflow-hidden rounded-lg">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d682.6813886664107!2d121.0139271410784!3d14.55176281155918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9125525a2c9%3A0x7361a05f453add65!2sEurotel%20Makati%20Hotel!5e0!3m2!1sen!2sph!4v1763965983541!5m2!1sen!2sph"
+                width="590"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </section>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <section className="py-10 text-white relative overflow-hidden bg-linear-to-br from-red-300 to-red-200" 
+        style={{ boxShadow: '0 -9px 20px -9px rgba(0,0,0,0.15)' }}>
+        <div className="absolute inset-0 bg-linear-radial from-red-600/20 via-transparent to-transparent" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            >
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+              animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
+              transition={{ duration: 5, repeat: Infinity }}
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg, #66000A, #99000F, #CC0014, #FF3347, #FF6675)",
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Ready to Experience Eurotel?
+            </motion.h2>
+          
+              <p className="text-xl mb-12 text-pretty max-w-2xl mx-auto opacity-95 text-red-900">
+                Contact us today to book your stay or learn more about our services and amenities.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-12">
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center bg-red-800/90">
+                    <Phone className="w-6 h-6 text-red-300" />
+                  </div>
+                  <span className="text-lg">+1 (555) 123-4567</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center bg-red-800/90">
+                    <Mail className="w-6 h-6 text-red-300" />
+                  </div>
+                  <span className="text-lg">info@eurotel.com</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center bg-red-800/90">
+                    <MapPin className="w-6 h-6 text-red-300" />
+                  </div>
+                  <span className="text-lg">123 Luxury Ave, City Center</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Link href="/rooms">
+                  <button 
+                    className="group px-10 py-4 w-24 h-16 rounded-sm sm:w-auto flex items-center justify-center font-medium text-lg transition-all duration-500 transform hover:scale-105 text-gray-200 shadow-2xl hover:shadow-3xl bg-red-800 border-2 border-red-800/40 hover:text-white hover:bg-red-800/30 hover:backdrop-blur-sm">
+                    Book Now
+                  </button>
+                </Link>
+                <Link href="/about">
+                  <button
+                    className="px-10 py-4 w-24 h-16 rounded-sm sm:w-auto font-medium text-lg transition-all duration-500 border-2 border-red-800/40 text-gray-200 bg-red-800/30 backdrop-blur-sm hover:bg-red-800 hover:border-red-800 transform hover:scale-105">
+                    Learn More
+                  </button>
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+      </section>
+
+    </main>
   )
 }

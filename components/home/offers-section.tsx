@@ -6,18 +6,18 @@ export default function OffersSection() {
   return (
     <main>
       {/* Services Overview */}
-      <section className="py-10 pb-20 bg-gradient-to-br from-red-50 to-red-100 shadow-md">
+      <section className="py-10 pb-20 bg-linear-to-br from-red-50 to-red-100 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-red-900 mb-4 text-balance">Our Services</h2>
-            <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-red-500 to-red-400" />
+            <div className="w-24 h-1 mx-auto mb-6 bg-linear-to-r from-red-500 to-red-400" />
             <p className="text-lg text-red-700 max-w-2xl mx-auto text-pretty">
               Comprehensive services tailored for business travelers and leisure guests in Makati City.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-gradient-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
+            <Card className="bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
               <CardHeader>
                 <CardTitle className="flex items-center text-xl sm:text-2xl text-red-800">
                   <Users className="w-5 h-5 text-red-500 mr-2" />
@@ -46,7 +46,7 @@ export default function OffersSection() {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
+            <Card className="bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
               <CardHeader>
                 <CardTitle className="flex items-center text-xl sm:text-2xl text-red-800">
                   <Users className="w-5 h-5 text-red-500 mr-2" />
@@ -75,7 +75,7 @@ export default function OffersSection() {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
+            <Card className="bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
               <CardHeader>
                 <CardTitle className="flex items-center text-xl sm:text-2xl text-red-800">
                   <Users className="w-5 h-5 text-red-500 mr-2" />
@@ -111,14 +111,14 @@ export default function OffersSection() {
         <div className="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-red-900">Exclusive Offers</h2>
-            <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-red-600 to-red-400" />
+            <div className="w-24 h-1 mx-auto mb-6 bg-linear-to-r from-red-600 to-red-400" />
             <p className="text-lg max-w-2xl mx-auto text-pretty text-red-600">
               Take advantage of our exclusive deals and packages designed to make your stay even more memorable.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-            <div className="overflow-hidden rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-white to-red-50 shadow-xl border border-red-300">
+            <div className="overflow-hidden rounded-2xl transition-all duration-300 hover:scale-105 bg-linear-to-br from-white to-red-50 shadow-xl border border-red-300">
               <div
                 className="h-56 bg-cover bg-center relative"
                 style={{
@@ -156,7 +156,7 @@ export default function OffersSection() {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-white to-red-50 shadow-xl border border-red-200">
+            <div className="overflow-hidden rounded-2xl transition-all duration-300 hover:scale-105 bg-linear-to-br from-white to-red-50 shadow-xl border border-red-200">
               <div
                 className="h-56 bg-cover bg-center relative"
                 style={{

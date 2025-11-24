@@ -169,7 +169,7 @@ export default function RoomsPreviewSection() {
             <h2 className="text-3xl md:text-4xl font-bold text-red-900 mb-4">
               Our Featured Rooms
             </h2>
-            <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-red-600 to-red-400" />
+            <div className="w-24 h-1 mx-auto mb-6 bg-linear-to-r from-red-600 to-red-400" />
             <p className="text-lg max-w-2xl mx-auto text-pretty text-red-700">
               Discover comfort and luxury in our carefully designed accommodations, each offering exceptional amenities
               and service.
@@ -194,7 +194,7 @@ export default function RoomsPreviewSection() {
                     </Badge>
                   </div>
                   <div className="absolute top-4 right-4">
-                    <Badge variant="outline" className="bg-white/90 backdrop-blur-sm border-red-200">
+                    <Badge variant="outline" className="bg-white/90 backdrop-blur-sm">
                       ₱{room.price}/night
                     </Badge>
                   </div>
@@ -247,7 +247,7 @@ export default function RoomsPreviewSection() {
                     {user ? (
                       <Link href={`/rooms/${room.id}`}>
                         <Button
-                          className="bg-gradient-to-r bg-red-300 text-red-900 shadow-lg hover:bg-red-400 group/btn"
+                          className="bg-linear-to-r bg-red-300 text-red-900 shadow-lg hover:bg-red-400 group/btn"
                           size="sm"
                         >
                           Book Now
@@ -257,7 +257,7 @@ export default function RoomsPreviewSection() {
                     ) : (
                       <Link href="/login">
                         <Button
-                          className="bg-gradient-to-r bg-red-300 text-red-900 shadow-lg hover:bg-red-400 group/btn"
+                          className="bg-linear-to-r bg-red-300 text-red-900 shadow-lg hover:bg-red-400 group/btn"
                           size="sm"
                         >
                           Login to Book
@@ -273,7 +273,7 @@ export default function RoomsPreviewSection() {
 
           {/* View All Rooms CTA */}
           <div className="text-center">
-            <div className="bg-gradient-to-r from-red-300 to-red-700 rounded-2xl p-8 text-white relative overflow-hidden">
+            <div className="bg-linear-to-r from-red-300 to-red-700 rounded-2xl p-8 text-white relative overflow-hidden">
               {/* Decorative elements */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-yellow-400/20 rounded-full -ml-12 -mb-12"></div>
@@ -291,7 +291,7 @@ export default function RoomsPreviewSection() {
                   <Link href="/rooms">
                     <Button
                       size="lg"
-                      className="bg-red-900 text-red-300 hover:bg-red-300 hover:text-red-900 font-bold px-8 py-3 text-lg group/cta hover:scale-105 transition-transform"
+                      className="bg-red-900 text-red-100 hover:bg-red-300 hover:text-red-900 font-bold px-8 py-3 text-lg group/cta hover:scale-105 transition-transform"
                     >
                       <Eye className="mr-3 w-5 h-5" />
                       View All Rooms

@@ -238,7 +238,7 @@ export default function RoomsComponent() {
 
   return (
     <main className="min-h-screen">
-      <section className="relative py-20 bg-gradient-to-br from-red-50 to-red-100">
+      <section className="relative py-20 bg-linear-to-br from-red-50 to-red-100">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
           style={{
@@ -259,7 +259,7 @@ export default function RoomsComponent() {
         {/* Filter section - keeping your existing filter code */}
         <div className="mb-8 bg-white rounded-xl shadow-lg border border-red-100 overflow-hidden">
           {/* Mobile-First Compact Header */}
-          <div className="bg-gradient-to-r from-red-900 to-red-700 px-4 py-3">
+          <div className="bg-linear-to-r from-red-900 to-red-700 px-4 py-3">
             <h2 className="text-lg font-semibold text-white flex items-center">
               <Filter className="w-4 h-4 mr-2" />
               Find Your Perfect Room
@@ -386,10 +386,10 @@ export default function RoomsComponent() {
 
             {/* Desktop: Modern engaging design */}
             <div className="hidden md:block">
-              <div className="bg-gradient-to-br from-red-200 via-red-300/50 to-red-500/50 rounded-2xl p-8 border-2 border-red-100 shadow-xl backdrop-blur-sm max-w-6xl mx-auto relative overflow-hidden">
+              <div className="bg-linear-to-br from-red-200 via-red-300/50 to-red-500/50 rounded-2xl p-8 border-2 border-red-100 shadow-xl backdrop-blur-sm max-w-6xl mx-auto relative overflow-hidden">
                 {/* Decorative background elements */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-red-400/20 to-red-400/20 rounded-full -mr-16 -mt-16"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-red-300/20 to-red-300/20 rounded-full -ml-12 -mb-12"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-red-400/20 to-red-400/20 rounded-full -mr-16 -mt-16"></div>
+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-linear-to-tr from-red-300/20 to-red-300/20 rounded-full -ml-12 -mb-12"></div>
 
                 <div className="relative z-10">
                   <div className="flex flex-wrap gap-6 items-end">
@@ -513,7 +513,7 @@ export default function RoomsComponent() {
                           setTypeFilter("all")
                           setPriceFilter("all")
                         }}
-                        className="h-14 px-8 bg-gradient-to-r from-red-600 via-red-700 to-red-800 hover:from-red-700 hover:via-red-800 hover:to-red-900 text-white shadow-lg hover:shadow-2xl transition-all duration-300 rounded-xl font-bold text-sm border-2 border-red-500/20 hover:border-red-400/30 hover:scale-105 active:scale-95"
+                        className="h-14 px-8 bg-linear-to-r from-red-600 via-red-700 to-red-800 hover:from-red-700 hover:via-red-800 hover:to-red-900 text-white shadow-lg hover:shadow-2xl transition-all duration-300 rounded-xl font-bold text-sm border-2 border-red-500/20 hover:border-red-400/30 hover:scale-105 active:scale-95"
                       >
                         <Filter className="w-5 h-5 mr-2" />
                         Clear All
@@ -524,16 +524,16 @@ export default function RoomsComponent() {
 
                 {/* Active Filters - Modern pill design */}
                 {(searchTerm || typeFilter !== "all" || priceFilter !== "all") && (
-                  <div className="mt-8 p-6 bg-gradient-to-r from-gray-50/80 to-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/60">
+                  <div className="mt-8 p-6 bg-linear-to-r from-gray-50/80 to-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/60">
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 bg-gradient-to-r from-red-500 to-red-600 rounded-xl">
+                      <div className="p-2 bg-linear-to-r from-red-500 to-red-600 rounded-xl">
                         <Filter className="w-4 h-4 text-white" />
                       </div>
                       <span className="text-lg font-bold text-gray-800">Active Filters</span>
                     </div>
                     <div className="flex flex-wrap gap-3">
                       {searchTerm && (
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-100 to-red-200 text-red-800 border-2 border-red-300/50 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-red-100 to-red-200 text-red-800 border-2 border-red-300/50 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
                           <Search className="w-4 h-4" />
                           <span className="font-semibold">&quot;{searchTerm}&quot;</span>
 
@@ -546,7 +546,7 @@ export default function RoomsComponent() {
                         </div>
                       )}
                       {typeFilter !== "all" && (
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-100 to-red-200 text-red-800 border-2 border-red-300/50 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-red-100 to-red-200 text-red-800 border-2 border-red-300/50 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
                           {typeFilter === "single" && <Bed className="w-4 h-4" />}
                           {typeFilter === "double" && <Users className="w-4 h-4" />}
                           {typeFilter === "suite" && <Star className="w-4 h-4" />}
@@ -562,7 +562,7 @@ export default function RoomsComponent() {
                         </div>
                       )}
                       {priceFilter !== "all" && (
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-100 to-red-200 text-red-800 border-2 border-red-300/50 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-red-100 to-red-200 text-red-800 border-2 border-red-300/50 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
                           <span className="text-red-800">₱</span>
                           <span className="font-semibold">
                             {priceFilter === "budget"
@@ -666,7 +666,7 @@ export default function RoomsComponent() {
                       user ? (
                         <Link href={`/rooms/${room.id}`}>
                           <Button
-                            className="bg-gradient-to-r from-red-700 to-red-600 hover:from-red-800 hover:to-red-700 text-white"
+                            className="bg-linear-to-r from-red-700 to-red-600 hover:from-red-800 hover:to-red-700 text-white"
                             size="sm"
                           >
                             Select Room
@@ -675,7 +675,7 @@ export default function RoomsComponent() {
                       ) : (
                         <Link href="/login">
                           <Button
-                            className="bg-gradient-to-r bg-red-300 text-red-900 shadow-lg hover:bg-red-400"
+                            className="bg-linear-to-r bg-red-300 text-red-900 shadow-lg hover:bg-red-400"
                             size="sm"
                           >
                             Login to Book
@@ -695,7 +695,7 @@ export default function RoomsComponent() {
         )}
 
         {selectedRoom && user && (
-          <Card className="mt-8 bg-gradient-to-r from-green-800 to-green-700 text-white border-green-600">
+          <Card className="mt-8 bg-linear-to-r from-red-800 to-red-700 text-white border-red-600">
             <CardContent className="p-6 text-center">
               <h3 className="text-xl font-bold mb-2">Ready to Book?</h3>
               <p className="mb-4 text-green-100">
@@ -704,7 +704,7 @@ export default function RoomsComponent() {
               </p>
               <Link href="/checkin-checkout">
                 <Button
-                  className="bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-600 hover:to-yellow-500 text-green-900"
+                  className="bg-linear-to-r from-yellow-500 to-yellow-400 hover:from-yellow-600 hover:to-yellow-500 text-green-900"
                   size="lg"
                 >
                   Continue to Booking
@@ -716,9 +716,9 @@ export default function RoomsComponent() {
         )}
       </div>
 
-      <section className="py-20 text-white relative overflow-hidden bg-gradient-to-br from-red-300 to-red-200" 
+      <section className="py-10 text-white relative overflow-hidden bg-linear-to-br from-red-300 to-red-200" 
         style={{ boxShadow: '0 -9px 20px -9px rgba(0,0,0,0.15)' }}>
-        <div className="absolute inset-0 bg-gradient-radial from-red-600/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-radial from-red-600/20 via-transparent to-transparent" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -768,7 +768,7 @@ export default function RoomsComponent() {
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Link href="/contact">
                   <button 
-                    className="group px-10 py-4 w-24 h-16 rounded-sm sm:w-auto flex items-center justify-center font-medium text-lg transition-all duration-500 transform hover:scale-105 text-gray-200 shadow-2xl hover:shadow-3xl bg-red-800 border-2 border-red-800 border-red-800/40 hover:text-white hover:bg-red-800/30 hover:backdrop-blur-sm">
+                    className="group px-10 py-4 w-24 h-16 rounded-sm sm:w-auto flex items-center justify-center font-medium text-lg transition-all duration-500 transform hover:scale-105 text-gray-200 shadow-2xl hover:shadow-3xl bg-red-800 border-2 border-red-800 hover:text-white hover:bg-red-800/30 hover:backdrop-blur-sm">
                     Contact Us
                   </button>
                 </Link>
@@ -781,7 +781,7 @@ export default function RoomsComponent() {
               </div>
             </motion.div>
           </div>
-    </section>
+      </section>
     </main>
   )
 }

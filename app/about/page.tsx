@@ -91,7 +91,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-red-50 to-red-100">
+      <section className="relative py-20 bg-linear-to-br from-red-50 to-red-100">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
           style={{
@@ -115,7 +115,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-br shadow-md from-red-50 to-red-100">
+      <section className="py-16 bg-linear-to-br shadow-md from-red-50 to-red-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -133,7 +133,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-red-800 mb-6 text-balance">Our Story</h2>
-            <div className="w-24 h-1 mb-6 bg-gradient-to-r from-red-500 to-red-400" />
+            <div className="w-24 h-1 mb-6 bg-linear-to-r from-red-500 to-red-400" />
             <div className="space-y-4 text-red-800">
               <p className="text-pretty">
                   Eurotel Makati has been serving guests at the strategic corner of Don Chino Roces and Arnaiz Avenue,
@@ -169,10 +169,10 @@ export default function AboutPage() {
                 {awards.map((award, index) => (
                   <Card
                     key={index}
-                    className="flex items-center p-6 bg-gradient-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300"
+                    className="flex items-center p-6 bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300"
                   >
                     <div className="flex">
-                      <div className="w-18 h-10 bg-gradient-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center">
+                      <div className="w-18 h-10 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center">
                         <Award className="w-6 h-6 text-red-800" />
                       </div>
                       <div className="space-y-3">
@@ -189,7 +189,7 @@ export default function AboutPage() {
           <div className="max-w-7xl mx-auto mt-10 px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-red-800 mb-4 text-balance">Our Journey in Makati</h2>
-              <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-red-500 to-red-400" />
+              <div className="w-24 h-1 mx-auto mb-6 bg-linear-to-r from-red-500 to-red-400" />
               <p className="text-lg text-red-700 max-w-2xl mx-auto text-pretty">
                 Key milestones in our journey of serving guests in the heart of Metro Manila&apos;s business district.
               </p>
@@ -199,7 +199,7 @@ export default function AboutPage() {
               {milestones.map((milestone, index) => (
                 <Card
                   key={index}
-                  className="hover:shadow-lg transition-all duration-300 hover:scale-105 bg-gradient-to-br from-white to-red-50 border border-red-200"
+                  className="hover:shadow-lg transition-all duration-300 hover:scale-105 bg-linear-to-br from-white to-red-50 border border-red-200"
                 >
                   <CardHeader>
                     <Badge variant="secondary" className="w-fit bg-red-300 text-red-900 hover:bg-red-400">
@@ -215,11 +215,11 @@ export default function AboutPage() {
       </section>
 
       {/* Our Values Section */}
-      <section className="py-16 space-y-20 bg-white-100">
+      <section className="pb-16 pt-10 bg-white-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-red-800 mb-4 text-balance">What Sets Us Apart</h2>
-            <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-red-500 to-red-400" />
+            <div className="w-24 h-1 mx-auto mb-6 bg-linear-to-r from-red-500 to-red-400" />
             <p className="text-lg text-red-800 max-w-2xl mx-auto text-pretty">
               Our commitment to excellence is built on these core principles that define the Eurotel Makati experience.
             </p>
@@ -229,10 +229,10 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <Card
                 key={index}
-                className="text-center h-full bg-gradient-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300"
+                className="text-center h-full bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300"
               >
                 <CardHeader>
-                  <div className="w-12 h-12 bg-gradient-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-12 h-12 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
                     <value.icon className="w-6 h-6 text-red-800" />
                   </div>
                   <CardTitle className="text-xl text-red-800">{value.title}</CardTitle>
@@ -251,16 +251,16 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-red-800 mb-4 text-balance">Prime Makati Location</h2>
-            <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-red-500 to-red-400" />
+            <div className="w-24 h-1 mx-auto mb-6 bg-linear-to-r from-red-500 to-red-400" />
             <p className="text-lg text-red-800 max-w-2xl mx-auto text-pretty">
               Strategically positioned in the heart of Metro Manila&apos;s premier business and shopping district.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="text-center bg-gradient-to-br from-white to-red-50 shadow-lg border border-red-200">
+            <Card className="text-center bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200">
               <CardHeader>
-                <div className="w-12 h-12 bg-gradient-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Building2 className="w-6 h-6 text-red-800" />
                 </div>
                 <CardTitle className="text-red-800">Business District Access</CardTitle>
@@ -272,9 +272,9 @@ export default function AboutPage() {
               </CardContent>
             </Card>
 
-            <Card className="text-center bg-gradient-to-br from-white to-red-50 shadow-lg border border-red-200">
+            <Card className="text-center bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200">
               <CardHeader>
-                <div className="w-12 h-12 bg-gradient-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Star className="w-6 h-6 text-red-800" />
                 </div>
                 <CardTitle className="text-red-800">Shopping and Dining</CardTitle>
@@ -286,9 +286,9 @@ export default function AboutPage() {
               </CardContent>
             </Card>
 
-            <Card className="text-center bg-gradient-to-br from-white to-red-50 shadow-lg border border-red-200">
+            <Card className="text-center bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200">
               <CardHeader>
-                <div className="w-12 h-12 bg-gradient-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="w-6 h-6 text-red-800" />
                 </div>
                 <CardTitle className="text-red-800">Transportation Hub</CardTitle>

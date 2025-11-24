@@ -25,11 +25,11 @@ export default function TestimonialsSection() {
   ]
 
   return (
-    <section className="py-20 bg-gradient-to-br from-red-50 to-red-100">
+    <section className="py-20 bg-linear-to-br from-red-50 to-red-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance text-red-800">What Our Guests Say</h2>
-          <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-red-600 to-red-400" />
+          <div className="w-24 h-1 mx-auto mb-6 bg-linear-to-r from-red-600 to-red-400" />
           <p className="text-lg max-w-2xl mx-auto text-pretty text-red-700">
             Dont just take our word for it. Heres what our valued guests have to say about their Eurotel experience.
           </p>
@@ -39,7 +39,7 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="p-8 rounded-2xl h-full transition-all duration-300 hover:scale-105 bg-gradient-to-br from-white to-green-50 shadow-lg border border-red-200"
+              className="p-8 rounded-2xl h-full transition-all duration-300 hover:scale-105 bg-linear-to-br from-white to-green-50 shadow-lg border border-red-200"
             >
               <div className="flex items-center space-x-1 mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
