@@ -100,14 +100,14 @@ export default function HeroSection() {
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <Link href="/rooms">
-              <button className="group px-10 py-4 rounded-sm w-full sm:w-auto flex items-center justify-center font-medium text-lg transition-all duration-500 transform hover:scale-105 text-gray-200 shadow-2xl hover:shadow-3xl bg-red-600 border-2 border-red-600 hover:border-white/70 hover:text-white hover:bg-black/20 hover:backdrop-blur-sm">
+              <button className="group px-10 py-4 rounded-sm w-full sm:w-auto flex items-center justify-center font-medium text-lg transition-all duration-500 transform hover:scale-105 text-gray-200 shadow-2xl hover:shadow-3xl bg-red-800 border-2 border-red-800 hover:border-white/70 hover:text-white hover:bg-black/20 hover:backdrop-blur-sm">
                 <span className="mr-3">Book Your Stay</span>
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </Link>
             <Link href="/about">
               <button
-                className="px-10 py-4 rounded-sm w-full sm:w-auto font-medium text-lg transition-all duration-500 border-2 border-white/70 text-gray-200 bg-black/20 backdrop-blur-sm hover:bg-red-600 hover:border-red-600 transform hover:scale-105"
+                className="px-10 py-4 rounded-sm w-full sm:w-auto font-medium text-lg transition-all duration-500 border-2 border-white/70 text-gray-200 bg-black/20 backdrop-blur-sm hover:bg-red-800 hover:border-red-800 transform hover:scale-105"
                 style={{
                   textShadow: "0 0 10px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.5)",
                 }}
