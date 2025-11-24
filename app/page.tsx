@@ -12,10 +12,6 @@ export default function HomePage() {
       <HeroSection />
       <RoomsPreviewSection />
       <SectionDivider />
-      <OffersSection />
-      <SectionDivider />
-      <AmenitiesSection />
-      <SectionDivider />
       <TestimonialsSection />
       <ContactSection />
     </div>
