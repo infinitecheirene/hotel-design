@@ -16,8 +16,8 @@ export default function OffersSection() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="py-10 bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
               <CardHeader>
                 <CardTitle className="flex items-center text-xl sm:text-2xl text-red-800">
                   <Users className="w-5 h-5 text-red-500 mr-2" />
@@ -46,7 +46,7 @@ export default function OffersSection() {
               </CardContent>
             </Card>
 
-            <Card className="bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
+            <Card className="py-10 bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
               <CardHeader>
                 <CardTitle className="flex items-center text-xl sm:text-2xl text-red-800">
                   <Users className="w-5 h-5 text-red-500 mr-2" />
@@ -75,7 +75,7 @@ export default function OffersSection() {
               </CardContent>
             </Card>
 
-            <Card className="bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
+            <Card className="py-10 bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
               <CardHeader>
                 <CardTitle className="flex items-center text-xl sm:text-2xl text-red-800">
                   <Users className="w-5 h-5 text-red-500 mr-2" />
