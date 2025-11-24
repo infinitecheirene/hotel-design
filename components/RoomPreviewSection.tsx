@@ -162,240 +162,152 @@ export default function RoomsPreviewSection() {
   }
 
   return (
-    <main className="py-20 bg-gradient-to-br from-red-50 to-red-100">
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-red-200 via-red-600 to-red-800 bg-clip-text text-transparent">Exclusive Offers</h2>
-          <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-red-600 to-red-400" />
-          <p className="text-lg max-w-2xl mx-auto text-pretty text-red-600">
-            Take advantage of our exclusive deals and packages designed to make your stay even more memorable.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <div className="overflow-hidden rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-white to-red-50 shadow-xl border border-red-300">
-            <div
-              className="h-56 bg-cover bg-center relative"
-              style={{
-                backgroundImage: "url('/deluxe-double-room.jpg')",
-              }}
-            >
-              <div className="absolute top-4 right-4 px-4 py-2 rounded-full text-sm font-bold bg-red-300 text-red-900">
-                Save 25%
-              </div>
-            </div>
-            <div className="p-8">
-              <h3 className="text-2xl font-bold mb-4 text-red-800">Romantic Getaway Package</h3>
-              <p className="mb-6 text-red-700">
-                Perfect for couples seeking a romantic escape. Includes champagne, roses, and a couples spa treatment.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center text-sm text-red-700">
-                  <CheckCircle className="w-5 h-5 mr-3 text-orange-500" />
-                  Luxury suite upgrade
-                </li>
-                <li className="flex items-center text-sm text-red-700">
-                  <CheckCircle className="w-5 h-5 mr-3 text-orange-500" />
-                  Complimentary breakfast
-                </li>
-                <li className="flex items-center text-sm text-red-700">
-                  <CheckCircle className="w-5 h-5 mr-3 text-orange-500" />
-                  Couples spa treatment
-                </li>
-              </ul>
-              <Link href="/rooms">
-                <button className="w-full py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 bg-red-300 text-red-900 shadow-lg hover:bg-red-400">
-                  Book Now
-                </button>
-              </Link>
-            </div>
+    <main>
+      <section className="max-w-7xl py-16 mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-red-900 mb-4">
+              Our Featured Rooms
+            </h2>
+            <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-red-600 to-red-400" />
+            <p className="text-lg max-w-2xl mx-auto text-pretty text-red-700">
+              Discover comfort and luxury in our carefully designed accommodations, each offering exceptional amenities
+              and service.
+            </p>
           </div>
 
-          <div className="overflow-hidden rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-white to-red-50 shadow-xl border border-red-200">
-            <div
-              className="h-56 bg-cover bg-center relative"
-              style={{
-                backgroundImage: "url('/superior-single-room.jpg')",
-              }}
-            >
-              <div className="absolute top-4 right-4 px-4 py-2 rounded-full text-sm font-bold bg-red-300 text-red-900">
-                Save 20%
-              </div>
-            </div>
-            <div className="p-8">
-              <h3 className="text-2xl font-bold mb-4 text-red-800">Business Traveler Special</h3>
-              <p className="mb-6 text-red-700">
-                Designed for the modern business traveler with all the essentials for productivity and comfort.
-              </p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex items-center text-sm text-red-700">
-                  <CheckCircle className="w-5 h-5 mr-3 text-orange-500" />
-                  High-speed WiFi
-                </li>
-                <li className="flex items-center text-sm text-red-700">
-                  <CheckCircle className="w-5 h-5 mr-3 text-orange-500" />
-                  Meeting room access
-                </li>
-                <li className="flex items-center text-sm text-red-700">
-                  <CheckCircle className="w-5 h-5 mr-3 text-orange-500" />
-                  Express check-in/out
-                </li>
-              </ul>
-              <Link href="/rooms">
-                <button className="w-full py-4 rounded-lg font-semibold transition-all duration-300 hover:scale-105 bg-red-300 text-red-900 shadow-lg hover:bg-red-400">
-                  Book Now
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-    </section>
-
-    <section className="max-w-7xl py-16 mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-red-200 via-red-600 to-red-800 bg-clip-text text-transparent mb-4">
-            Our Featured Rooms
-          </h2>
-          <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-red-600 to-red-400" />
-          <p className="text-lg max-w-2xl mx-auto text-pretty text-red-600">
-            Discover comfort and luxury in our carefully designed accommodations, each offering exceptional amenities
-            and service.
-          </p>
-        </div>
-
-        {/* Featured Rooms Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {featuredRooms.map((room) => (
-            <Card
-              key={room.id}
-              className="overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col p-0 border-red-200 hover:border-red-400 group"
-            >
-              <div
-                className="h-48 bg-cover bg-center relative group-hover:scale-105 transition-transform duration-300"
-                style={{ backgroundImage: `url('${room.image}')` }}
+          {/* Featured Rooms Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            {featuredRooms.map((room) => (
+              <Card
+                key={room.id}
+                className="overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col p-0 border-red-200 hover:border-red-400 group"
               >
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
-                <div className="absolute top-4 left-4">
-                  <Badge variant="default" className="bg-red-600 hover:bg-red-700">
-                    Available
-                  </Badge>
-                </div>
-                <div className="absolute top-4 right-4">
-                  <Badge variant="outline" className="bg-white/90 backdrop-blur-sm border-red-200">
-                    ₱{room.price}/night
-                  </Badge>
-                </div>
-                {/* Overlay with quick view */}
-                <div className="absolute inset-0 bg-red-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="text-center text-white">
-                    <Eye className="w-8 h-8 mx-auto mb-2" />
-                    <p className="text-sm font-medium">Quick View</p>
+                <div
+                  className="h-48 bg-cover bg-center relative group-hover:scale-105 transition-transform duration-300"
+                  style={{ backgroundImage: `url('${room.image}')` }}
+                >
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
+                  <div className="absolute top-4 left-4">
+                    <Badge variant="default" className="bg-red-600 hover:bg-red-700">
+                      Available
+                    </Badge>
                   </div>
-                </div>
-              </div>
-
-              <CardHeader className="px-6">
-                <CardTitle className="flex items-center text-red-800">
-                  {getRoomTypeIcon(room.type)}
-                  <span className="ml-2 text-2xl">{room.name}</span>
-                </CardTitle>
-                <CardDescription className="text-red-700 line-clamp-2">{room.description}</CardDescription>
-              </CardHeader>
-
-              <CardContent className="flex-1 flex flex-col px-6 pb-6">
-                <div className="space-y-4 flex-1">
-                  <div>
-                    <h4 className="font-semibold text-sm mb-2 text-red-800">Top Amenities:</h4>
-                    <div className="flex flex-wrap gap-1 my-2">
-                      {room.amenities.slice(0, 4).map((amenity, index) => (
-                        <div
-                          key={index}
-                          className="flex items-center text-xs text-orange-400 bg-red-50 px-2 py-1 rounded-full"
-                        >
-                          {getAmenityIcon(amenity)}
-                          <span className="ml-1 text-red-600">{amenity}</span>
-                        </div>
-                      ))}
-                      {room.amenities.length > 4 && (
-                        <div className="text-xs text-red-600 bg-red-50 px-2 py-1 rounded-full">
-                          +{room.amenities.length - 4} more
-                        </div>
-                      )}
+                  <div className="absolute top-4 right-4">
+                    <Badge variant="outline" className="bg-white/90 backdrop-blur-sm border-red-200">
+                      ₱{room.price}/night
+                    </Badge>
+                  </div>
+                  {/* Overlay with quick view */}
+                  <div className="absolute inset-0 bg-red-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="text-center text-white">
+                      <Eye className="w-8 h-8 mx-auto mb-2" />
+                      <p className="text-sm font-medium">Quick View</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-red-200 mt-auto">
-                  <div className="text-2xl font-bold text-red-800">
-                    ₱{room.price}
-                    <span className="text-sm text-red-600 font-normal">/night</span>
+                <CardHeader className="px-6">
+                  <CardTitle className="flex items-center text-red-800">
+                    {getRoomTypeIcon(room.type)}
+                    <span className="ml-2 text-2xl">{room.name}</span>
+                  </CardTitle>
+                  <CardDescription className="text-red-700 line-clamp-2">{room.description}</CardDescription>
+                </CardHeader>
+
+                <CardContent className="flex-1 flex flex-col px-6 pb-6">
+                  <div className="space-y-4 flex-1">
+                    <div>
+                      <h4 className="font-semibold text-sm mb-2 text-red-800">Top Amenities:</h4>
+                      <div className="flex flex-wrap gap-1 my-2">
+                        {room.amenities.slice(0, 4).map((amenity, index) => (
+                          <div
+                            key={index}
+                            className="flex items-center text-xs text-orange-400 bg-red-50 px-2 py-1 rounded-full"
+                          >
+                            {getAmenityIcon(amenity)}
+                            <span className="ml-1 text-red-600">{amenity}</span>
+                          </div>
+                        ))}
+                        {room.amenities.length > 4 && (
+                          <div className="text-xs text-red-600 bg-red-50 px-2 py-1 rounded-full">
+                            +{room.amenities.length - 4} more
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   </div>
 
-                  {user ? (
-                    <Link href={`/rooms/${room.id}`}>
-                      <Button
-                        className="bg-gradient-to-r bg-red-300 text-red-900 shadow-lg hover:bg-red-400 group/btn"
-                        size="sm"
-                      >
-                        Book Now
-                        <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
-                  ) : (
-                    <Link href="/login">
-                      <Button
-                        className="bg-gradient-to-r bg-red-300 text-red-900 shadow-lg hover:bg-red-400 group/btn"
-                        size="sm"
-                      >
-                        Login to Book
-                        <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                      </Button>
-                    </Link>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+                  <div className="flex items-center justify-between pt-4 border-t border-red-200 mt-auto">
+                    <div className="text-2xl font-bold text-red-800">
+                      ₱{room.price}
+                      <span className="text-sm text-red-600 font-normal">/night</span>
+                    </div>
 
-        {/* View All Rooms CTA */}
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-red-300 to-red-700 rounded-2xl p-8 text-white relative overflow-hidden">
-            {/* Decorative elements */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-yellow-400/20 rounded-full -ml-12 -mb-12"></div>
+                    {user ? (
+                      <Link href={`/rooms/${room.id}`}>
+                        <Button
+                          className="bg-gradient-to-r bg-red-300 text-red-900 shadow-lg hover:bg-red-400 group/btn"
+                          size="sm"
+                        >
+                          Book Now
+                          <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                    ) : (
+                      <Link href="/login">
+                        <Button
+                          className="bg-gradient-to-r bg-red-300 text-red-900 shadow-lg hover:bg-red-400 group/btn"
+                          size="sm"
+                        >
+                          Login to Book
+                          <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-            <div className="relative z-10">
-              <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                Discover All Our <span className="text-red-900">Amazing Rooms</span>
-              </h3>
-              <p className="text-green-100 mb-6 max-w-2xl mx-auto">
-                Explore our complete collection of rooms and suites. From budget-friendly options to luxury
-                accommodations, find the perfect space for your stay with advanced filtering and detailed information.
-              </p>
+          {/* View All Rooms CTA */}
+          <div className="text-center">
+            <div className="bg-gradient-to-r from-red-300 to-red-700 rounded-2xl p-8 text-white relative overflow-hidden">
+              {/* Decorative elements */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-yellow-400/20 rounded-full -ml-12 -mb-12"></div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Link href="/rooms">
-                  <Button
-                    size="lg"
-                    className="bg-red-900 text-red-300 hover:bg-red-300 hover:text-red-900 font-bold px-8 py-3 text-lg group/cta hover:scale-105 transition-transform"
-                  >
-                    <Eye className="mr-3 w-5 h-5" />
-                    View All Rooms
-                    <ArrowRight className="ml-3 w-5 h-5 group-hover/cta:translate-x-1 transition-transform" />
-                  </Button>
-                </Link>
+              <div className="relative z-10">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                  Discover All Our <span className="text-red-900">Amazing Rooms</span>
+                </h3>
+                <p className="text-green-100 mb-6 max-w-2xl mx-auto">
+                  Explore our complete collection of rooms and suites. From budget-friendly options to luxury
+                  accommodations, find the perfect space for your stay with advanced filtering and detailed information.
+                </p>
 
-                <div className="text-center sm:text-left">
-                  <div className="text-red-200 text-sm font-medium">{mockRooms.length} Total Rooms Available</div>
-                  <div className="text-red-100 text-xs">Advanced search & filtering options</div>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                  <Link href="/rooms">
+                    <Button
+                      size="lg"
+                      className="bg-red-900 text-red-300 hover:bg-red-300 hover:text-red-900 font-bold px-8 py-3 text-lg group/cta hover:scale-105 transition-transform"
+                    >
+                      <Eye className="mr-3 w-5 h-5" />
+                      View All Rooms
+                      <ArrowRight className="ml-3 w-5 h-5 group-hover/cta:translate-x-1 transition-transform" />
+                    </Button>
+                  </Link>
+
+                  <div className="text-center sm:text-left">
+                    <div className="text-red-200 text-sm font-medium">{mockRooms.length} Total Rooms Available</div>
+                    <div className="text-red-100 text-xs">Advanced search & filtering options</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-    </section>
+      </section>
   </main>
   )
 }

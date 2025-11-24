@@ -73,8 +73,8 @@ export default function HeroSection() {
               style={{ backgroundImage: `url('${slide.image}')` }}
             />
             {/* Softer overlays */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/10 via-transparent to-black/20" />
+            <div className="absolute inset-0 bg-gradient-to-b from-red-50/20 via-black/10 to-red-100/20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-red-50/20 via-transparent to-red-100/20" />
           </div>
         ))}
       </div>

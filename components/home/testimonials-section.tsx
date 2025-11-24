@@ -30,7 +30,7 @@ export default function TestimonialsSection() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-balance text-red-800">What Our Guests Say</h2>
           <div className="w-24 h-1 mx-auto mb-6 bg-gradient-to-r from-red-600 to-red-400" />
-          <p className="text-lg max-w-2xl mx-auto text-pretty text-red-600">
+          <p className="text-lg max-w-2xl mx-auto text-pretty text-red-700">
             Dont just take our word for it. Heres what our valued guests have to say about their Eurotel experience.
           </p>
         </div>
