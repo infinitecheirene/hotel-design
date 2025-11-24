@@ -35,6 +35,19 @@ export function Footer() {
             </div>
           </div>
 
+          {/* Services */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-red-300">Services</h4>
+            <ul className="space-y-2 text-green-100">
+              <li>24/7 Room Service</li>
+              <li>Concierge Service</li>
+              <li>Valet Parking</li>
+              <li>Spa & Wellness</li>
+              <li>Fine Dining</li>
+              <li>Business Center</li>
+            </ul>
+          </div>
+
           {/* Quick Links */}
           <div className="space-y-4">
             <h4 className="text-lg font-semibold text-red-300">Quick Links</h4>
@@ -64,19 +77,6 @@ export function Footer() {
                   My Profile
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          {/* Services */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-red-300">Services</h4>
-            <ul className="space-y-2 text-green-100">
-              <li>24/7 Room Service</li>
-              <li>Concierge Service</li>
-              <li>Valet Parking</li>
-              <li>Spa & Wellness</li>
-              <li>Fine Dining</li>
-              <li>Business Center</li>
             </ul>
           </div>
 

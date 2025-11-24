@@ -189,7 +189,7 @@ export default function RoomsPreviewSection() {
                 >
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300"></div>
                   <div className="absolute top-4 left-4">
-                    <Badge variant="default" className="bg-red-600 hover:bg-red-700">
+                    <Badge variant="default" className="bg-green-600 hover:bg-green-700">
                       Available
                     </Badge>
                   </div>

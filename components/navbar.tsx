@@ -127,7 +127,7 @@ export function Navbar() {
                   <div className="space-y-2">
                     <div className="px-3 py-2 text-sm text-muted-foreground">Welcome, {user.username}</div>
                     <Link href="/profile" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Button variant="ghost" size="sm" className="w-full justify-start">
+                      <Button variant="ghost" size="sm" className="w-full justify-start my-2">
                         Profile
                       </Button>
                     </Link>
@@ -135,7 +135,7 @@ export function Navbar() {
                       variant="outline"
                       size="sm"
                       onClick={handleLogout}
-                      className="w-full flex items-center justify-center space-x-2 bg-transparent"
+                      className="w-full flex items-center justify-center space-x-2 bg-transparent my-2"
                     >
                       <LogOut className="w-4 h-4" />
                       <span>Logout</span>
@@ -144,12 +144,12 @@ export function Navbar() {
                 ) : (
                   <div className="space-y-2">
                     <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Button variant="outline" size="sm" className="w-full bg-transparent">
+                      <Button variant="outline" size="sm" className="w-full bg-transparent my-2">
                         Register
                       </Button>
                     </Link>
                     <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Button variant="default" size="sm" className="w-full">
+                      <Button variant="default" size="sm" className="w-full my-2">
                         Login
                       </Button>
                     </Link>
