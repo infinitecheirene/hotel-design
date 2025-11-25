@@ -154,22 +154,22 @@ export default function AboutPage() {
           </div>
 
           {/* Awards Section */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 space-x-5 mt-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 space-x-6 mt-10">
             <div
-              className="h-100 bg-cover bg-center rounded-lg shadow-xl border-4 border-red-300"
+              className="h-100 w-full bg-cover bg-center rounded-lg shadow-xl border-4 border-red-300"
               style={{
                 backgroundImage: "url('/elegant-hotel-lobby-interior.jpg')",
               }}
             />
 
-            <div className="text-center mb-12">
+            <div className="text-center ml-0 mb-12 mt-5 sm:mt-0 sm:ml-5">
               <h2 className="text-3xl md:text-4xl font-bold text-red-800 mb-4 text-balance">Recognition and Awards</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {awards.map((award, index) => (
                   <Card
                     key={index}
-                    className="flex items-center p-6 bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300"
+                    className="flex items-center px-6 py-4 bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300"
                   >
                     <div className="flex">
                       <div className="w-18 h-10 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center">

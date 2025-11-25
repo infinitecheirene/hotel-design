@@ -43,7 +43,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-3">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -58,13 +58,13 @@ export function Navbar() {
           </div>
 
           {/* Desktop Auth Buttons + PWA Install */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden md:flex items-center space-x-2 text-red-900">
             {/* PWA Install Text */}
             <PWAInstallButton />
             
             {user ? (
               <div className="flex items-center space-x-4">
-                <Link href="/profile" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <Link href="/profile" className="text-sm text-muted-foreground hover:text-red-200 transition-colors">
                   Profile
                 </Link>
                 <span className="text-sm text-muted-foreground">Welcome, {user.username}</span>
@@ -95,13 +95,13 @@ export function Navbar() {
           </div>
 
           {/* Mobile: PWA Install Text + Menu Button */}
-          <div className="md:hidden flex items-center space-x-3">
+          <div className="md:hidden flex items-center space-x-3 text-red-900">
             {/* PWA Install Text for Mobile - positioned between logo and hamburger */}
             <PWAInstallButton />
             
             {/* Mobile Menu Button */}
             <Button variant="ghost" size="sm" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5 text-red-200 border rounded-xl" /> : <Menu className="w-5 h-5 text-red-200" />}
             </Button>
           </div>
         </div>
@@ -114,7 +114,7 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`block px-3 py-2 text-base text-red-900 hover:text-red-700 font-medium transition-colors ${
+                  className={`block px-3 py-2 text-base text-red-200 hover:text-red-700 active:text-red-700 font-medium transition-colors ${
                     isActive(item.href) ? "bg-muted" : "text-foreground hover:bg-muted"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}

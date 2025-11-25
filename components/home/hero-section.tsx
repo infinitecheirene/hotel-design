@@ -81,9 +81,9 @@ export default function HeroSection() {
 
       {/* Main Content */}
       <div className="absolute inset-0 flex items-center justify-center z-20">
-        <div className="text-center max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="text-center max-w-6xl mx-auto px-6 lg:px-8 sm:my-10">
           <h1
-            className="text-3xl font-medium md:text-5xl lg:text-6xl mb-6 text-balance leading-tight tracking-wide"
+            className="text-4xl sm:text-3xl font-medium md:text-5xl lg:text-6xl mb-6 text-balance leading-tight tracking-wide"
           >
             {renderTitle(heroSlides[currentSlide].title, heroSlides[currentSlide].highlight)}
           </h1>
@@ -98,21 +98,21 @@ export default function HeroSection() {
             {heroSlides[currentSlide].subtitle}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+          <div className="flex flex-col sm:flex-row gap-6 items-center justify-center">
             <Link href="/rooms">
-              <button className="group px-10 py-4 rounded-sm w-full sm:w-auto flex items-center justify-center font-medium text-lg transition-all duration-500 transform hover:scale-105 text-gray-200 shadow-2xl hover:shadow-3xl bg-red-800 border-2 border-red-800 hover:border-white/70 hover:text-white hover:bg-black/20 hover:backdrop-blur-sm">
+              <button className="group w-60 h-16 px-10 py-4 rounded-sm sm:w-auto flex items-center justify-center font-medium text-md sm:text-lg transition-all duration-500 transform hover:scale-105 text-gray-200 shadow-2xl hover:shadow-3xl bg-red-800 border-2 border-red-800 hover:border-white/70 hover:text-white hover:bg-black/20 hover:backdrop-blur-sm">
                 <span className="mr-3">Book Your Stay</span>
                 <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </Link>
             <Link href="/about">
               <button
-                className="px-10 py-4 rounded-sm w-full sm:w-auto font-medium text-lg transition-all duration-500 border-2 border-white/70 text-gray-200 bg-black/20 backdrop-blur-sm hover:bg-red-800 hover:border-red-800 transform hover:scale-105"
+                className="w-60 h-16 px-10 py-4 rounded-sm sm:w-auto font-medium text-md sm:text-lg transition-all duration-500 border-2 border-white/70 text-gray-200 bg-black/20 backdrop-blur-sm hover:bg-red-800 hover:border-red-800 transform hover:scale-105"
                 style={{
                   textShadow: "0 0 10px rgba(0,0,0,0.6), 0 2px 4px rgba(0,0,0,0.5)",
                 }}
               >
-                Discover More
+                Learn More
               </button>
             </Link>
           </div>
@@ -120,7 +120,7 @@ export default function HeroSection() {
       </div>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex space-x-4">
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-30 flex space-x-4">
         {heroSlides.map((_, index) => (
           <button
             key={index}

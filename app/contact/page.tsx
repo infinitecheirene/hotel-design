@@ -340,22 +340,27 @@ export default function ContactPage() {
 
             {/* Google Maps Embed */}
             <div className="my-8 border border-red-200 shadow-2xl overflow-hidden rounded-lg">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d682.6813886664107!2d121.0139271410784!3d14.55176281155918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9125525a2c9%3A0x7361a05f453add65!2sEurotel%20Makati%20Hotel!5e0!3m2!1sen!2sph!4v1763965983541!5m2!1sen!2sph"
-                width="590"
-                height="450"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              <div className="relative w-full overflow-hidden rounded-lg">
+                <div className="w-full h-90 pb-[56.25%] sm:pb-[56.25%] md:pb-[60%] lg:pb-[56.25%]">
+                  <iframe
+                    className="absolute inset-0 w-full h-full"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d682.6813886664107!2d121.0139271410784!3d14.55176281155918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c9125525a2c9%3A0x7361a05f453add65!2sEurotel%20Makati%20Hotel!5e0!3m2!1sen!2sph!4v1763965983541!5m2!1sen!2sph"
+                    title="Eurotel Makati Hotel Map"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              </div>
             </div>
           </section>
         </div>
       </section>
 
+      {/* Call to Action Section */}
       <section className="py-10 text-white relative overflow-hidden bg-linear-to-br from-red-300 to-red-200" 
-        style={{ boxShadow: '0 -9px 20px -9px rgba(0,0,0,0.15)' }}>
+      style={{ boxShadow: '0 -9px 20px -9px rgba(0,0,0,0.15)' }}>
         <div className="absolute inset-0 bg-linear-radial from-red-600/20 via-transparent to-transparent" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <motion.div
@@ -403,24 +408,23 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <div className="flex flex-col sm:flex-row gap-6 items-center justify-center">
                 <Link href="/rooms">
                   <button 
-                    className="group px-10 py-4 w-24 h-16 rounded-sm sm:w-auto flex items-center justify-center font-medium text-lg transition-all duration-500 transform hover:scale-105 text-gray-200 shadow-2xl hover:shadow-3xl bg-red-800 border-2 border-red-800/40 hover:text-white hover:bg-red-800/30 hover:backdrop-blur-sm">
+                    className="group w-46 h-16 px-10 py-4 rounded-sm flex items-center justify-center font-medium text-lg transition-all duration-500 transform hover:scale-105 text-gray-200 shadow-2xl hover:shadow-3xl bg-red-800 border-2 border-red-800/40 hover:text-white hover:bg-red-800/30 hover:backdrop-blur-sm">
                     Book Now
                   </button>
                 </Link>
-                <Link href="/about">
+                <Link href="/contact">
                   <button
-                    className="px-10 py-4 w-24 h-16 rounded-sm sm:w-auto font-medium text-lg transition-all duration-500 border-2 border-red-800/40 text-gray-200 bg-red-800/30 backdrop-blur-sm hover:bg-red-800 hover:border-red-800 transform hover:scale-105">
-                    Learn More
+                    className="w-46 h-16 px-10 py-4 rounded-sm font-medium text-lg transition-all duration-500 border-2 border-red-800/40 text-gray-200 bg-red-800/30 backdrop-blur-sm hover:bg-red-800 hover:border-red-800 transform hover:scale-105">
+                    Contact Us
                   </button>
                 </Link>
               </div>
             </motion.div>
           </div>
       </section>
-
     </main>
   )
 }
