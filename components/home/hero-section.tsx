@@ -73,13 +73,12 @@ export default function HeroSection() {
               style={{ backgroundImage: `url('${slide.image}')` }}
             />
             {/* Softer overlays */}
-            <div className="absolute inset-0 bg-linear-to-b from-gray-500/20 via-black/10 to-gray-500/20" />
-            <div className="absolute inset-0 bg-linear-to-r from-gray-500/20 via-transparent to-gray-500/20" />
+            <div className="absolute inset-0 bg-linear-to-b from-gray-500/10 via-black/10 to-gray-500/10" />
+            <div className="absolute inset-0 bg-linear-to-r from-gray-500/10 via-transparent to-gray-500/10" />
           </div>
         ))}
       </div>
 
-      {/* Main Content */}
       <div className="absolute inset-0 flex items-center justify-center z-20">
         <div className="text-center max-w-6xl mx-auto px-6 lg:px-8 sm:my-10">
           <h1
