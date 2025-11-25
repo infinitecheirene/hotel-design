@@ -273,8 +273,7 @@ export default function RoomsPreviewSection() {
 
           {/* View All Rooms CTA */}
           <div className="text-center">
-            <div className="bg-linear-to-r from-red-300 to-red-700 rounded-2xl p-8 text-white relative overflow-hidden">
-              {/* Decorative elements */}
+            <div className="bg-linear-to-r from-red-300 via-red-400 to-red-500 rounded-2xl p-8 text-white relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-yellow-400/20 rounded-full -ml-12 -mb-12"></div>
 

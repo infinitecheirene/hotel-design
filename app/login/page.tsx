@@ -65,10 +65,10 @@ export default function LoginPage() {
         <div className="absolute top-0 left-0 w-full h-full bg-[url('data:image/svg+xml,%3Csvg width%3D%2260%22 height%3D%2260%22 viewBox%3D%220 0 60 60%22 xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg fill%3D%22none%22 fillRule%3D%22evenodd%22%3E%3Cg fill%3D%22%23059669%22 fillOpacity%3D%220.03%22%3E%3Ccircle cx%3D%2230%22 cy%3D%2230%22 r%3D%224%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-30"></div>
 
         <Card className="w-full max-w-md relative z-10 border-red-200 shadow-2xl bg-white/95 backdrop-blur-sm">
-          <CardHeader className="text-center py-6 bg-linear-to-r from-red-800 to-red-700 text-white rounded-t-lg">
+          <CardHeader className="text-center py-6 bg-linear-to-br from-red-900 via-red-800 to-red-900 text-white rounded-t-lg">
             <div className="flex items-center space-x-2 mb-4">
               <Link href="/">
-                <CircleChevronLeft />
+                <CircleChevronLeft className="text-red-200"/>
               </Link>
               <CardTitle className="text-3xl font-bold ml-4 sm:ml-14">Welcome Back</CardTitle>
             </div>

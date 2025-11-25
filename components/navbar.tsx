@@ -34,7 +34,7 @@ export function Navbar() {
   }
 
   return (
-    <nav className="bg-red-50 border-b border-border sticky top-0 z-40">
+    <nav className="bg-linear-to-br from-red-900 via-red-800 to-red-900 border-b border-border sticky top-0 z-40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -48,8 +48,8 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-3 py-2 text-sm font-medium text-red-900 hover:text-red-700 transition-colors ${
-                  isActive(item.href) ? "border-b-2 border-primary" : "text-foreground hover:text-red-700"
+                className={`px-3 py-2 text-sm font-medium text-red-100 transition-colors ${
+                  isActive(item.href) ? "border-b-2 border-red-200" : "text-foreground hover:text-red-200"
                 }`}
               >
                 {item.label}
@@ -58,7 +58,7 @@ export function Navbar() {
           </div>
 
           {/* Desktop Auth Buttons + PWA Install */}
-          <div className="hidden md:flex items-center text-red-900 hover:text-red-700 space-x-4">
+          <div className="hidden md:flex items-center space-x-4">
             {/* PWA Install Text */}
             <PWAInstallButton />
             
@@ -81,12 +81,12 @@ export function Navbar() {
             ) : (
               <div className="flex items-center space-x-2">
                 <Link href="/register">
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="bg-red-900 text-red-200 border-2 border-red-200 hover:bg-red-200 hover:text-red-900 hover:border-red-900">
                     Register
                   </Button>
                 </Link>
                 <Link href="/login">
-                  <Button variant="default" size="sm">
+                  <Button variant="default" size="sm" className="px-6 bg-red-200 text-red-900 border-2 border-red-900 hover:bg-red-900 hover:text-red-200 hover:border-red-200">
                     Login
                   </Button>
                 </Link>
