@@ -58,7 +58,7 @@ export default function HeroSection() {
   }
 
   return (
-    <section className="relative h-[70vh] md:h-[80vh] overflow-hidden bg-fixed">
+    <section className="relative h-[90vh] md:h-[60vh] overflow-hidden bg-fixed">
       {/* Slider Images */}
       <div className="relative h-full">
         {heroSlides.map((slide, index) => (

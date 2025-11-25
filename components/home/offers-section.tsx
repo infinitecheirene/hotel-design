@@ -19,13 +19,13 @@ export default function OffersSection() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="py-10 bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
               <CardHeader>
-                <CardTitle className="flex items-center text-xl sm:text-2xl text-red-800">
+                <CardTitle className="flex items-center justify-center text-2xl text-red-800">
                   <Users className="w-5 h-5 text-red-500 mr-2" />
                   Guest Services
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2">
+                <ul className="flex flex-col space-y-2 items-center justify-center">
                   <li className="flex items-center text-sm text-red-700">
                     <CheckCircle className="w-4 h-4 text-orange-500 mr-2" />
                     24/7 front desk assistance
@@ -48,13 +48,13 @@ export default function OffersSection() {
 
             <Card className="py-10 bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
               <CardHeader>
-                <CardTitle className="flex items-center text-xl sm:text-2xl text-red-800">
+                <CardTitle className="flex items-center justify-center text-2xl text-red-800">
                   <Users className="w-5 h-5 text-red-500 mr-2" />
                   Business Facilities
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2">
+                <ul className="flex flex-col space-y-2 items-center justify-center">
                   <li className="flex items-center text-sm text-red-700">
                     <CheckCircle className="w-4 h-4 text-orange-500 mr-2" />
                     Function rooms for meetings
@@ -77,13 +77,13 @@ export default function OffersSection() {
 
             <Card className="py-10 bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300">
               <CardHeader>
-                <CardTitle className="flex items-center text-xl sm:text-2xl text-red-800">
+                <CardTitle className="flex items-center justify-center text-2xl text-red-800">
                   <Users className="w-5 h-5 text-red-500 mr-2" />
                   Hotel Amenities
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <ul className="space-y-2">
+                <ul className="flex flex-col space-y-2 items-center justify-center">
                   <li className="flex items-center text-sm text-red-700">
                     <CheckCircle className="w-4 h-4 text-orange-500 mr-2" />
                     On-site restaurant & coffee shop
@@ -112,7 +112,7 @@ export default function OffersSection() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-red-900">Exclusive Offers</h2>
             <div className="w-24 h-1 mx-auto mb-6 bg-linear-to-r from-red-600 to-red-400" />
-            <p className="text-lg max-w-2xl mx-auto text-pretty text-red-600">
+            <p className="text-lg max-w-2xl mx-auto text-pretty text-red-700">
               Take advantage of our exclusive deals and packages designed to make your stay even more memorable.
             </p>
           </div>
