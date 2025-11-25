@@ -5,11 +5,11 @@ export function Footer() {
   return (
     <footer className="bg-linear-to-br from-red-900 via-red-800 to-red-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Hotel Info */}
-          <div className="space-y-4">
+          <div className="space-y-4 md:space-x-7 lg:space-x-0">
             <h3 className="text-2xl font-bold text-red-200 underline">Eurotel</h3>
-            <p className="text-green-100 leading-relaxed">
+            <p className="text-green-100 leading-relaxed text-justify">
               Where service and comfort meet. Experience luxury redefined with our world-class amenities and exceptional
               hospitality.
             </p>
@@ -36,7 +36,7 @@ export function Footer() {
           </div>
 
           {/* Services */}
-          <div className="space-y-4">
+          <div className="space-y-4 lg:ml-10">
             <h4 className="text-lg font-semibold text-red-300">Services</h4>
             <ul className="space-y-2 text-green-100">
               <li>24/7 Room Service</li>
@@ -102,7 +102,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-red-500 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-green-100 text-sm">© 2024 Eurotel. All rights reserved.</p>
+          <p className="text-green-100 text-sm">© 2025 Eurotel. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="#" className="text-green-100 hover:text-orange-200 text-sm transition-colors">
               Privacy Policy

@@ -386,10 +386,7 @@ export default function RoomsComponent() {
 
             {/* Desktop: Modern engaging design */}
             <div className="hidden md:block">
-              <div className="bg-linear-to-br from-red-200 via-red-300/50 to-red-500/50 rounded-2xl p-8 border-2 border-red-100 shadow-xl backdrop-blur-sm max-w-6xl mx-auto relative overflow-hidden">
-                {/* Decorative background elements */}
-                <div className="absolute top-0 right-0 w-32 h-32 bg-linear-to-br from-red-400/20 to-red-400/20 rounded-full -mr-16 -mt-16"></div>
-                <div className="absolute bottom-0 left-0 w-24 h-24 bg-linear-to-tr from-red-300/20 to-red-300/20 rounded-full -ml-12 -mb-12"></div>
+              <div className="max-w-6xl mx-auto relative overflow-hidden">
 
                 <div className="relative z-10">
                   <div className="flex flex-wrap gap-6 items-end">
@@ -421,7 +418,7 @@ export default function RoomsComponent() {
                         Room Type
                       </Label>
                       <Select value={typeFilter} onValueChange={setTypeFilter}>
-                        <SelectTrigger className="h-14 border-2 border-red-200/60 focus:border-red-400 focus:ring-2 focus:ring-red-200 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
+                        <SelectTrigger className="h-14 border-2 border-red-200/60 focus:border-red-400 focus:ring-2 focus:ring-red-200 bg-white/80 transition-all duration-300 rounded-xl">
                           <div className="flex items-center gap-3">
                             {typeFilter === "single" && <Bed className="w-5 h-5 text-red-800" />}
                             {typeFilter === "double" && <Users className="w-5 h-5 text-red-800" />}
@@ -464,7 +461,7 @@ export default function RoomsComponent() {
                         Price Range
                       </Label>
                       <Select value={priceFilter} onValueChange={setPriceFilter}>
-                        <SelectTrigger className="h-14 border-2 border-red-200/60 focus:border-red-400 focus:ring-2 focus:ring-red-200 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl">
+                        <SelectTrigger className="h-14 border-2 border-red-200/60 focus:border-red-400 focus:ring-2 focus:ring-red-200 bg-white/80 transition-all duration-300 rounded-xl">
                           <div className="flex items-center gap-3">
                             <span className="text-red-800 text-lg">₱</span>
                             <SelectValue placeholder="All Prices" />
@@ -505,7 +502,7 @@ export default function RoomsComponent() {
                     </div>
 
                     {/* Clear Filters Button */}
-                    <div className="space-y-2">
+                    <div>
                       <Label className="text-transparent">.</Label>
                       <Button
                         onClick={() => {
