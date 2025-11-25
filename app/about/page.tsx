@@ -136,18 +136,18 @@ export default function AboutPage() {
             <h2 className="text-3xl md:text-4xl font-bold text-red-800 mb-6 text-balance">Our Story</h2>
             <div className="w-24 h-1 mb-6 bg-linear-to-r from-red-500 to-red-400" />
             <div className="space-y-4 text-red-800">
-              <p className="text-pretty">
+              <p className="text-pretty text-justify">
                   Eurotel Makati has been serving guests at the strategic corner of Don Chino Roces and Arnaiz Avenue,
                   providing comfortable accommodations in one of Metro Manila&apos;s most accessible business locations.
                   Our 83-room property offers a more intimate hotel experience compared to larger establishments.
               </p>
-              <p className="text-pretty">
+              <p className="text-pretty text-justify">
                   As part of one of the Philippines&apos; established hotel chains, we focus on delivering consistent
                   quality and reliable service. Our location provides easy access to Makati&apos;s business district
                   while maintaining competitive rates that make us a practical choice for both business and leisure
                   travelers.
               </p>
-              <p className="text-pretty">
+              <p className="text-pretty text-justify">
                   With amenities including free WiFi, on-site parking, a restaurant, and 24-hour room service, Eurotel
                   Makati continues to serve guests who appreciate straightforward hospitality in a convenient location.
               </p>
@@ -155,15 +155,15 @@ export default function AboutPage() {
           </div>
 
           {/* Awards Section */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 space-x-6 mt-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 space-x-6 mt-10">
             <div
-              className="h-100 w-full bg-cover bg-center rounded-lg shadow-xl border-4 border-red-300"
+              className="h-100 lg:h-120 w-full bg-cover bg-center rounded-lg shadow-xl border-4 border-red-300"
               style={{
                 backgroundImage: "url('/elegant-hotel-lobby-interior.jpg')",
               }}
             />
 
-            <div className="text-center ml-0 mb-12 mt-5 sm:mt-0 sm:ml-5">
+            <div className="text-center ml-0 mb-12 lg:ml-5 mt-10 lg:mt-0">
               <h2 className="text-3xl md:text-4xl font-bold text-red-800 mb-4 text-balance">Recognition and Awards</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -172,9 +172,9 @@ export default function AboutPage() {
                     key={index}
                     className="flex items-center px-6 py-4 bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300"
                   >
-                    <div className="flex">
-                      <div className="w-18 h-10 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center">
-                        <Award className="w-6 h-6 text-red-800" />
+                    <div className="flex-col flex items-center justify-center">
+                      <div className="w-10 h-10 my-2 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center">
+                        <Award className="w-6 h-6 text-red-800 " />
                       </div>
                       <div className="space-y-3">
                         <div className="font-semibold text-red-800 px-3">{award.award}</div>
@@ -290,7 +290,7 @@ export default function AboutPage() {
               </CardContent>
             </Card>
 
-            <Card className="py-6 text-center bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200">
+            <Card className="py-6 md:ml-46 md:-mr-46 lg:ml-0 lg:mr-0 text-center bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200">
               <CardHeader>
                 <div className="w-12 h-12 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="w-6 h-6 text-red-800" />

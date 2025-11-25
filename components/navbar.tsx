@@ -144,12 +144,12 @@ export function Navbar() {
                 ) : (
                   <div className="space-y-2">
                     <Link href="/register" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Button variant="outline" size="sm" className="w-full bg-transparent my-2">
+                      <Button variant="outline" size="sm" className="w-full my-2 bg-red-900 text-red-200 border border-red-200 hover:bg-red-200 hover:text-red-900 hover:border-red-900">
                         Register
                       </Button>
                     </Link>
                     <Link href="/login" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Button variant="default" size="sm" className="w-full my-2">
+                      <Button variant="default" size="sm" className="w-full my-2 px-6 bg-red-200 text-red-900 border border-red-900 hover:bg-red-900 hover:text-red-200 hover:border-red-200">
                         Login
                       </Button>
                     </Link>
