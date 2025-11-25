@@ -283,7 +283,7 @@ export default function RoomsComponent() {
               </div>
 
               {/* Horizontal filter row for mobile */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-2">
                 <div>
                   <Select value={typeFilter} onValueChange={setTypeFilter}>
                     <SelectTrigger className="h-11 border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30">
@@ -318,7 +318,7 @@ export default function RoomsComponent() {
 
                 <div>
                   <Select value={priceFilter} onValueChange={setPriceFilter}>
-                    <SelectTrigger className="h-11 border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30">
+                    <SelectTrigger className="h-11 -ml-5 border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30">
                       <div className="flex items-center">
                         <span className="text-red-600 mr-2">₱</span>
                         <SelectValue placeholder="Price Range" />
