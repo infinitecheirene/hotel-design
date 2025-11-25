@@ -8,7 +8,7 @@ export default function ContactSection() {
   return (
     <section className="py-10 text-white relative overflow-hidden bg-linear-to-br from-red-300 to-red-200" 
       style={{ boxShadow: '0 -9px 20px -9px rgba(0,0,0,0.15)' }}>
-        <div className="absolute inset-0 bg-linear-radial from-red-600/20 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-linear-radial from-red-900/20 via-transparent to-transparent" />
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

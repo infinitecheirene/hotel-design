@@ -30,6 +30,8 @@ import {
   Phone,
 } from "lucide-react"
 import Link from "next/link"
+import SectionDivider from "@/components/home/section-divider"
+import AmenitiesSection from "./home/amenities-section"
 
 export default function RoomsComponent() {
   const { rooms, setRooms, selectedRoom, setSelectedRoom } = useRoom()
@@ -712,6 +714,9 @@ export default function RoomsComponent() {
           </Card>
         )}
       </div>
+
+      <SectionDivider />
+      <AmenitiesSection />
 
       {/* Call to Action Section */}
       <section className="py-10 text-white relative overflow-hidden bg-linear-to-br from-red-300 to-red-200" 

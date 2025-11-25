@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import ContactSection from "@/components/home/contact-section"
+import SectionDivider from "@/components/home/section-divider"
 
 import {
   Award,
@@ -246,6 +247,8 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      <SectionDivider />
 
       {/* Location Advantages */}
       <section className="py-16 bg-red-50">
