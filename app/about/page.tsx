@@ -186,6 +186,7 @@ export default function AboutPage() {
             </div>
           </div>
           
+          {/* Journey Section */}
           <div className="max-w-7xl mx-auto mt-10 px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-bold text-red-800 mb-4 text-balance">Our Journey in Makati</h2>
@@ -199,7 +200,7 @@ export default function AboutPage() {
               {milestones.map((milestone, index) => (
                 <Card
                   key={index}
-                  className="hover:shadow-lg transition-all duration-300 hover:scale-105 bg-linear-to-br from-white to-red-50 border border-red-200"
+                  className="py-6 hover:shadow-lg transition-all duration-300 hover:scale-105 bg-linear-to-br from-white to-red-50 border border-red-200"
                 >
                   <CardHeader>
                     <Badge variant="secondary" className="w-fit bg-red-300 text-red-900 hover:bg-red-400">
@@ -214,7 +215,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Values Section */}
+      {/* What Set Us Appart Section */}
       <section className="pb-16 pt-10 bg-white-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -229,7 +230,7 @@ export default function AboutPage() {
             {values.map((value, index) => (
               <Card
                 key={index}
-                className="text-center h-full bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300"
+                className="py-6 text-center h-full bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200 hover:scale-105 transition-transform duration-300"
               >
                 <CardHeader>
                   <div className="w-12 h-12 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -258,7 +259,7 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Card className="text-center bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200">
+            <Card className="py-6 text-center bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200">
               <CardHeader>
                 <div className="w-12 h-12 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Building2 className="w-6 h-6 text-red-800" />
@@ -272,7 +273,7 @@ export default function AboutPage() {
               </CardContent>
             </Card>
 
-            <Card className="text-center bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200">
+            <Card className="py-6 text-center bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200">
               <CardHeader>
                 <div className="w-12 h-12 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Star className="w-6 h-6 text-red-800" />
@@ -286,7 +287,7 @@ export default function AboutPage() {
               </CardContent>
             </Card>
 
-            <Card className="text-center bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200">
+            <Card className="py-6 text-center bg-linear-to-br from-white to-red-50 shadow-lg border border-red-200">
               <CardHeader>
                 <div className="w-12 h-12 bg-linear-to-br from-red-100 to-red-200 border-2 border-red-300 rounded-full flex items-center justify-center mx-auto mb-4">
                   <MapPin className="w-6 h-6 text-red-800" />
