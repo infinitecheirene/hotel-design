@@ -81,7 +81,7 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content Section */}
-      <section className="max-w-7xl mx-auto px-4 py-20">
+      <section className="max-w-7xl mx-auto px-4 py-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left Column - Contact Information */}
           <section className="space-y-8">
@@ -193,7 +193,7 @@ export default function ContactPage() {
             </Card>
 
             {/* Why Choose Us */}
-            <Card className="bg-linear-to-r from-red-700 to-red-600 border-0 text-white overflow-hidden">
+            <Card className="bg-linear-to-r from-red-900 to-red-700 border-0 text-white overflow-hidden">
               <CardContent className="p-5">
                 <h3 className="text-2xl sm:text-3xl font-bold mb-6 flex items-center">
                   <HeartHandshake className="w-6 h-6 mr-3" />
@@ -219,7 +219,7 @@ export default function ContactPage() {
           {/* Right Column - Contact Form */}
           <section>
             <div className="border-2 border-red-200 shadow-2xl overflow-hidden rounded-lg bg-white">
-              <div className="bg-linear-to-r from-red-800 to-red-700 text-white relative overflow-hidden">
+              <div className="bg-linear-to-r from-red-900 to-red-700 text-white relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-red-400/20 rounded-full -translate-y-16 translate-x-16"></div>
                 <div className="relative p-8">
                   <h3 className="text-3xl font-black text-white flex items-center mb-2">
@@ -315,7 +315,7 @@ export default function ContactPage() {
                     <Button
                       type="submit"
                       disabled={loading}
-                      className="w-full bg-linear-to-r from-red-700 to-red-600 hover:from-red-800 hover:to-red-700 disabled:from-gray-400 disabled:to-gray-400 h-14 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
+                      className="w-full bg-linear-to-r from-red-900 to-red-700 hover:from-red-800 hover:to-red-400 disabled:from-gray-400 disabled:to-gray-400 h-14 text-lg font-bold rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-xl"
                     >
                       {loading ? (
                         <>
