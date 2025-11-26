@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000'
     
     // Send request to backend API
-    const response = await fetch(`${apiUrl}/api/contact`, {  // ← FIXED HERE
+    const response = await fetch(`${apiUrl}/api/contact`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,7 +74,6 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Optional: Handle GET requests
 export async function GET() {
   return NextResponse.json(
     { message: 'Contact API is running' },
