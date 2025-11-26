@@ -39,7 +39,7 @@ export default function TestimonialsSection() {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="p-8 rounded-2xl h-full transition-all duration-300 hover:scale-105 bg-linear-to-br from-white to-green-50 shadow-lg border border-red-200"
+              className="p-5 lg-8 rounded-2xl h-full transition-all duration-300 hover:scale-105 bg-linear-to-br from-white to-green-50 shadow-lg border border-red-200"
             >
               <div className="flex items-center space-x-1 mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (

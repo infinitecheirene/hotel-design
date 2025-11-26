@@ -116,7 +116,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 bg-linear-to-br shadow-md from-red-50 to-red-100">
+      <section className="py-10 lg:py-16 bg-linear-to-br shadow-md from-red-50 to-red-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
@@ -130,7 +130,7 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story Section */}
-      <section className="py-16 bg-white-100">
+      <section className="py-10 lg:py-16 bg-white-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-red-800 mb-6 text-balance">Our Story</h2>
@@ -284,7 +284,7 @@ export default function AboutPage() {
                 <CardTitle className="text-red-800">Shopping and Dining</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-red-700 text-sm">
+                <p className="text-red-700 text-sm"> 
                   Close proximity to Greenbelt, Glorietta, and Power Plant Mall for shopping and entertainment.
                 </p>
               </CardContent>

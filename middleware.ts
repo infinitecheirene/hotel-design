@@ -45,12 +45,13 @@ export function middleware(request: NextRequest) {
         return NextResponse.json({ error: "Invalid authentication token" }, { status: 401 })
       }
 
-      // For admin routes, you'd normally validate the JWT and ensure the user is an admin.
-      // This middleware currently checks only that a Bearer token exists. Proper JWT
-      // decoding and role verification should be implemented in production.
-      // If needed, you can perform a token decode here and return 403 when the role
-      // is not admin. For now, allow the request to continue when an Authorization
-      // header is present so the client can call server-side proxy or backend endpoints.
+      // For admin routes, check if user has admin privileges
+      if (isAdminRoute) {
+        // In production, decode JWT and check user role
+        // For now, we'll assume the token contains role information
+        // This is just a placeholder - implement proper JWT validation
+        return NextResponse.json({ error: "Admin privileges required" }, { status: 403 })
+      }
     }
 
     return NextResponse.next()
