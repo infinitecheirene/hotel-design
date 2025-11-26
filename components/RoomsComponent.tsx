@@ -284,7 +284,7 @@ export default function RoomsComponent() {
               </div>
 
               {/* Responsive horizontal scroll for filters on mobile */}
-              <div className="flex gap-3 overflow-x-auto pb-1 -mx-2 px-2 scrollbar-thin scrollbar-thumb-red-200">
+              <div className="flex overflow-x-auto pb-1 -mx-2 px-2 scrollbar-thin scrollbar-thumb-red-200">
                 <div className="min-w-[150px] flex-1">
                   <Select value={typeFilter} onValueChange={setTypeFilter}>
                     <SelectTrigger className="h-11 w-full border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30 text-base rounded-lg">
@@ -392,7 +392,7 @@ export default function RoomsComponent() {
               <div className="max-w-6xl mx-auto relative overflow-hidden">
 
                 <div className="relative z-10">
-                  <div className="flex flex-wrap gap-6 items-end">
+                  <div className="flex lg:flex-wrap gap-6 items-end">
                     {/* Search Input - More prominent */}
                     <div className="flex-1 min-w-[280px] space-y-2">
                       <Label className="text-red-900 font-bold text-sm flex items-center gap-2">
@@ -502,22 +502,6 @@ export default function RoomsComponent() {
                           </SelectItem>
                         </SelectContent>
                       </Select>
-                    </div>
-
-                    {/* Clear Filters Button */}
-                    <div>
-                      <Label className="text-transparent">.</Label>
-                      <Button
-                        onClick={() => {
-                          setSearchTerm("")
-                          setTypeFilter("all")
-                          setPriceFilter("all")
-                        }}
-                        className="h-14 px-8 bg-linear-to-r from-red-600 via-red-700 to-red-800 hover:from-red-700 hover:via-red-800 hover:to-red-900 text-white shadow-lg hover:shadow-2xl transition-all duration-300 rounded-xl font-bold text-sm border-2 border-red-500/20 hover:border-red-400/30 hover:scale-105 active:scale-95"
-                      >
-                        <Filter className="w-5 h-5 mr-2" />
-                        Clear All
-                      </Button>
                     </div>
                   </div>
                 </div>
