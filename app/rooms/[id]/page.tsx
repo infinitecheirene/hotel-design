@@ -57,7 +57,6 @@ export default function RoomDetailPage() {
     lastName: "",
     email: "",
     phone: "",
-    address: "",
     specialRequests: "",
   })
 
@@ -779,19 +778,6 @@ export default function RoomDetailPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="address" className="text-red-800 font-medium">
-                        Address
-                      </Label>
-                      <Textarea
-                        id="address"
-                        value={bookingData.address}
-                        onChange={(e) => setBookingData({ ...bookingData, address: e.target.value })}
-                        className="border-red-200 focus:border-red-500 focus:ring-red-500"
-                        required
-                      />
-                    </div>
-
-                    <div className="space-y-2">
                       <Label htmlFor="specialRequests" className="text-red-800 font-medium">
                         Special Requests (Optional)
                       </Label>
@@ -825,11 +811,11 @@ export default function RoomDetailPage() {
                             </div>
                             <div className="flex justify-between">
                               <span className="text-red-700">Rate per night:</span>
-                              <span className="text-red-800 font-medium">${room.price}</span>
+                              <span className="text-red-800 font-medium">₱{room.price}</span>
                             </div>
                             <div className="flex justify-between font-semibold text-base border-t border-red-300 pt-1">
                               <span className="text-red-800">Total:</span>
-                              <span className="text-yellow-600 font-bold">${calculateTotal()}</span>
+                              <span className="text-yellow-600 font-bold">₱{calculateTotal()}</span>
                             </div>
                           </div>
                         </div>
@@ -849,7 +835,7 @@ export default function RoomDetailPage() {
                       ) : (
                         <>
                           <CreditCard className="w-4 h-4 mr-2" />
-                          Book Now - ${calculateTotal()}
+                          Book Now - ₱{calculateTotal()}
                         </>
                       )}
                     </Button>

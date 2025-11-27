@@ -5,7 +5,7 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@/contexts/auth-context"
-import { LogOut, Menu, X } from "lucide-react"
+import { LogOut, Menu, X, CircleUserRound } from "lucide-react"
 import { useState } from "react"
 import PWAInstallButton from "@/components/PWAInstallButton"
 
@@ -63,22 +63,16 @@ export function Navbar() {
             <PWAInstallButton />
             
             {user ? (
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center px-3 space-x-3">
                 <Link href="/profile">
-                  <Button variant="ghost" size="sm" className="px-6 bg-red-900 text-red-200 border border-red-200 hover:bg-red-200 hover:text-red-900 hover:border-red-900">
-                    Profile
-                  </Button>
+                  <CircleUserRound className="text-red-200 hover:text-red-300" />
                 </Link>
+                  <LogOut
+                    onClick={handleLogout}
+                    className="text-red-200 hover:text-red-300 cursor-pointer"
+                    size={20}
+                  />
 
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleLogout}
-                  className="flex items-center space-x-2 bg-red-200 text-red-900 border border-red-900 hover:bg-red-900 hover:text-red-200 hover:border-red-200"
-                >
-                  <span>Logout</span>
-                  <LogOut className="w-4 h-4" />
-                </Button>
               </div>
             ) : (
               <div className="flex items-center space-x-2">
@@ -128,20 +122,16 @@ export function Navbar() {
                 {user ? (
                   <div className="space-y-2">
                     {/* keep avatar+welcome visible, but show Profile + Logout buttons below */}
-                    <div className="flex items-center px-3 py-2 space-x-3">
-                      <div className="w-8 h-8 rounded-full bg-red-200 text-red-900 flex items-center justify-center font-semibold text-sm">
-                        {user.username?.charAt(0).toUpperCase()}
+                    <div className="flex items-center px-3 space-x-3">
+                      <div className="flex items-center justify-center">
+                        <CircleUserRound className="text-red-200 w-8 h-8 py-1" />
+                          <Link href="/profile" onClick={() => setIsMobileMenuOpen(false)}>
+                            <div className="text-md text-red-100 py-1 pt-2">Welcome, {user.username}</div>
+                          </Link>
                       </div>
-                      <div className="text-sm text-muted-foreground">Welcome, {user.username}</div>
                     </div>
 
                     <div className="px-3 flex flex-col space-y-2">
-                      <Link href="/profile" onClick={() => setIsMobileMenuOpen(false)}>
-                        <Button variant="ghost" size="sm" className="w-full justify-start">
-                          Profile
-                        </Button>
-                      </Link>
-
                       <Button
                         variant="outline"
                         size="sm"
