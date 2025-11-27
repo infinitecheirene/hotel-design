@@ -588,7 +588,7 @@ export default function RoomsComponent() {
               <Card
                 key={room.id}
                 className={`overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col p-0 border-red-200 hover:border-red-400 ${
-                  selectedRoom?.id === room.id ? "ring-2 ring-red-600" : ""
+                  selectedRoom?.id === room.id ? "" : ""
                 } ${!room.available ? "opacity-60" : ""}`}
               >
                 <div
@@ -598,13 +598,15 @@ export default function RoomsComponent() {
                   }}
                 >
                   <div className="absolute top-4 left-4">
-                    <Badge variant={room.available ? "default" : "secondary"}>
+                    <Badge
+                      className={
+                        room.available
+                          ? "bg-green-600/90 text-white backdrop-blur-sm"
+                          : "bg-red-500/90 text-white backdrop-blur-sm"
+                      }
+                      variant={room.available ? "default" : "secondary"}
+                    >
                       {room.available ? "Available" : "Booked"}
-                    </Badge>
-                  </div>
-                  <div className="absolute top-4 right-4">
-                    <Badge variant="outline" className="bg-background/80">
-                      ₱{room.price}/night
                     </Badge>
                   </div>
                 </div>
@@ -676,27 +678,6 @@ export default function RoomsComponent() {
               </Card>
             ))}
           </div>
-        )}
-
-        {selectedRoom && user && (
-          <Card className="mt-8 bg-linear-to-r from-red-800 to-red-700 text-white border-red-600">
-            <CardContent className="p-6 text-center">
-              <h3 className="text-xl font-bold mb-2">Ready to Book?</h3>
-              <p className="mb-4 text-green-100">
-                Youve selected the <strong className="text-yellow-400">{selectedRoom.name}</strong>. Proceed to
-                check-in/checkout to complete your booking.
-              </p>
-              <Link href="/checkin-checkout">
-                <Button
-                  className="bg-linear-to-r from-yellow-500 to-yellow-400 hover:from-yellow-600 hover:to-yellow-500 text-green-900"
-                  size="lg"
-                >
-                  Continue to Booking
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
-            </CardContent>
-          </Card>
         )}
       </div>
 

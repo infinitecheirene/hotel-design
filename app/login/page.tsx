@@ -17,7 +17,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const { login, isLoading } = useAuth()
+  const { setUserData, isLoading } = useAuth()
   const router = useRouter()
 
   // Helper function to check if input is an email
@@ -111,7 +111,15 @@ export default function LoginPage() {
         
         // Store user data if needed
         if (data.data?.user) {
+          // persist under `user` and `eurotel_user` so the AuthProvider and other parts of the app detect the session
           localStorage.setItem('user', JSON.stringify(data.data.user))
+          try {
+            localStorage.setItem('eurotel_user', JSON.stringify(data.data.user))
+          } catch {}
+          // update the AuthProvider immediately so navbar & other UI respond
+          try {
+            setUserData?.(data.data.user)
+          } catch {}
         }
         
         alert(data.message || "Login successful!")

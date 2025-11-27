@@ -255,12 +255,13 @@ export default function RoomsPreviewSection() {
                         </Button>
                       </Link>
                     ) : (
-                      <Link href="/login">
+                      // allow guests to view the room detail page; booking remains gated there
+                      <Link href={`/rooms/${room.id}`}>
                         <Button
                           className="bg-linear-to-r bg-red-300 text-red-900 shadow-lg hover:bg-red-400 group/btn"
                           size="sm"
                         >
-                          Login to Book
+                          Book Room
                           <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Button>
                       </Link>

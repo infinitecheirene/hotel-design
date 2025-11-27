@@ -11,6 +11,8 @@ interface User {
 interface AuthContextType {
   user: User | null
   login: (username: string, password: string) => Promise<boolean>
+  /** set user directly on the client provider and persist to localStorage */
+  setUserData: (user: User | null) => void
   logout: () => Promise<void>
   isLoading: boolean
 }
@@ -22,13 +24,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Check for stored user session on mount
-    const storedUser = localStorage.getItem("eurotel_user")
-    if (storedUser) {
+    // Check for stored user session on mount.
+    // Support both older `user` key and current `eurotel_user` to remain compatible.
+    const storedEurotel = localStorage.getItem("eurotel_user")
+    const storedUser = localStorage.getItem("user")
+
+    const raw = storedEurotel ?? storedUser
+    if (raw) {
       try {
-        setUser(JSON.parse(storedUser))
+        setUser(JSON.parse(raw))
       } catch (error) {
+        // Cleanup invalid entries
         localStorage.removeItem("eurotel_user")
+        localStorage.removeItem("user")
       }
     }
     setIsLoading(false)
@@ -48,7 +56,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (response.ok) {
         const userData = await response.json()
         setUser(userData.user)
+        // persist under `eurotel_user` (new canonical key) and `user` for compatibility
         localStorage.setItem("eurotel_user", JSON.stringify(userData.user))
+        try {
+          localStorage.setItem("user", JSON.stringify(userData.user))
+        } catch {}
         return true
       }
       return false
@@ -57,6 +69,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return false
     } finally {
       setIsLoading(false)
+    }
+  }
+
+  const setUserData = (u: User | null) => {
+    setUser(u)
+    if (u) {
+      try {
+        localStorage.setItem("eurotel_user", JSON.stringify(u))
+        localStorage.setItem("user", JSON.stringify(u))
+      } catch {}
+    } else {
+      localStorage.removeItem("eurotel_user")
+      localStorage.removeItem("user")
     }
   }
 
@@ -70,12 +95,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.error("Logout error:", error)
     } finally {
       setUser(null)
+      // remove both keys for safety
       localStorage.removeItem("eurotel_user")
+      localStorage.removeItem("user")
       setIsLoading(false)
     }
   }
 
-  return <AuthContext.Provider value={{ user, login, logout, isLoading }}>{children}</AuthContext.Provider>
+  return <AuthContext.Provider value={{ user, login, setUserData, logout, isLoading }}>{children}</AuthContext.Provider>
 }
 
 export function useAuth() {

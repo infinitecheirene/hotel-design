@@ -34,3 +34,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Testing / Verifying Navbar (Auth icons)
+
+1. Start the dev server:
+
+```bash
+npm run dev
+```
+
+2. Open the app at http://localhost:3000.
+
+3. Log in using the login page (/login) with valid credentials. The site stores the session in localStorage (key: `eurotel_user`).
+
+4. Expected behavior when logged in:
+	- Desktop: You should see a `Profile` button and a full `Logout` button (with icon + text) in the navbar.
+	- Mobile: Open the menu — you should see the avatar and welcome text in the menu header, and full-width `Profile` and `Logout` buttons in the mobile menu.
+
+5. Click the logout icon and confirm the UI returns to the logged-out state (Register/Login buttons visible).
+
+If anything looks off, open the browser console and check localStorage for `eurotel_user` to confirm the user session is present.

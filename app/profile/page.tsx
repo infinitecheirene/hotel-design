@@ -8,6 +8,8 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Calendar, MapPin, Users, CreditCard, Phone, Mail, User } from "lucide-react"
+import { motion } from "framer-motion"
+import Link from "next/link"
 
 interface Booking {
   id: string
@@ -99,15 +101,15 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-yellow-50">
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="bg-gradient-to-r from-green-800 to-green-700 rounded-2xl p-8 mb-8 text-white shadow-xl">
+    <main className="min-h-screen bg-linear-to-br from-red-50 to-red-100">
+      <div className="max-w-6xl mx-auto px-4 py-10">
+        <div className="bg-linear-to-r from-red-800 to-red-700 rounded-2xl p-8 mb-8 text-white shadow-xl">
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-r from-yellow-500 to-yellow-400 flex items-center justify-center text-2xl font-bold text-green-900">
+            <div className="hidden md:flex lg:flex w-20 h-20 rounded-full bg-linear-to-r bg-red-400 items-center justify-center text-2xl font-bold text-red-900">
               {user.username.charAt(0).toUpperCase()}
             </div>
             <div>
-              <h1 className="text-3xl font-bold mb-2">
+              <h1 className="text-4xl md:text-3xl font-bold mb-2">
                 Welcome back, <span className="text-yellow-400">{user.username}</span>!
               </h1>
               <p className="text-green-100">Manage your bookings and account details</p>
@@ -130,28 +132,28 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        <Card className="rounded-2xl border-green-200 shadow-lg py-0">
-          <CardHeader className="bg-gradient-to-r from-green-800 to-green-700 text-white rounded-t-2xl">
-            <CardTitle className="flex items-center gap-2 text-white">
-              <Calendar className="w-5 h-5" />
+        <Card className="rounded-2xl border-red-200 shadow-lg">
+          <CardHeader className="bg-linear-to-r from-red-800 to-red-700 text-white rounded-t-2xl py-4">
+            <CardTitle className="flex items-center gap-2 text-white text-2xl">
+              <Calendar className="w-5 h-5 text-3xl" />
               Your Bookings
             </CardTitle>
-            <CardDescription className="text-green-100">View and manage your hotel reservations</CardDescription>
+            <CardDescription className="text-red-100">View and manage your hotel reservations</CardDescription>
           </CardHeader>
           <CardContent className="p-6">
             {loading ? (
               <div className="text-center py-12">
-                <div className="w-10 h-10 border-3 border-green-200 border-t-green-600 rounded-full animate-spin mx-auto mb-4" />
+                <div className="w-10 h-10 border-3 border-green-200 border-t-red-600 rounded-full animate-spin mx-auto mb-4" />
                 <p className="text-green-600">Loading your bookings...</p>
               </div>
             ) : bookings.length === 0 ? (
               <div className="text-center py-12">
-                <Calendar className="w-16 h-16 mx-auto mb-4 text-green-400" />
-                <h3 className="text-xl font-semibold text-green-800 mb-2">No bookings yet</h3>
-                <p className="text-green-600 mb-6">Start planning your perfect stay at Eurotel</p>
+                <Calendar className="w-16 h-16 mx-auto mb-4 text-red-400" />
+                <h3 className="text-xl font-semibold text-red-800 mb-2">No bookings yet</h3>
+                <p className="text-red-600 mb-6">Start planning your perfect stay at Eurotel</p>
                 <Button
                   onClick={() => router.push("/rooms")}
-                  className="bg-gradient-to-r from-green-700 to-green-600 hover:from-green-800 hover:to-green-700"
+                  className="bg-linear-to-r from-red-700 to-red-600 hover:from-red-800 hover:to-red-700"
                 >
                   Browse Rooms
                 </Button>
@@ -161,51 +163,51 @@ export default function ProfilePage() {
                 {bookings.map((booking) => (
                   <div
                     key={booking.id}
-                    className="border border-green-200 rounded-xl p-6 bg-gradient-to-r from-white to-green-50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
+                    className="border border-red-200 rounded-xl p-6 bg-linear-to-r from-white to-red-50 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                   >
                     <div className="flex justify-between items-start mb-4">
                       <div>
-                        <h3 className="text-xl font-semibold text-green-800 mb-1">{booking.roomType}</h3>
-                        <p className="text-green-600">Booking #{booking.id}</p>
+                        <h3 className="text-xl font-semibold text-red-900 mb-1">{booking.roomType}</h3>
+                        <p className="text-red-700">Booking #{booking.id}</p>
                       </div>
                       <Badge className={`${getStatusColor(booking.status)} capitalize`}>{booking.status}</Badge>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
                       <div className="flex items-center gap-2">
-                        <MapPin className="w-4 h-4 text-green-600" />
-                        <span className="text-sm text-green-700">Room {booking.roomNumber}</span>
+                        <MapPin className="w-4 h-4 text-red-600" />
+                        <span className="text-sm text-red-700">Room {booking.roomNumber}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4 text-green-600" />
-                        <span className="text-sm text-green-700">
+                        <Calendar className="w-4 h-4 text-red-600" />
+                        <span className="text-sm text-red-700">
                           {new Date(booking.checkIn).toLocaleDateString()} -{" "}
                           {new Date(booking.checkOut).toLocaleDateString()}
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4 text-green-600" />
-                        <span className="text-sm text-green-700">
+                        <Users className="w-4 h-4 text-red-600" />
+                        <span className="text-sm text-red-700">
                           {booking.guests} Guest{booking.guests > 1 ? "s" : ""}
                         </span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <CreditCard className="w-4 h-4 text-green-600" />
-                        <span className="text-sm font-semibold text-green-800">${booking.totalAmount}</span>
+                        <CreditCard className="w-4 h-4 text-red-600" />
+                        <span className="text-sm font-semibold text-red-800">${booking.totalAmount}</span>
                       </div>
                     </div>
 
-                    <div className="flex gap-2 pt-4 border-t border-green-200">
+                    <div className="flex gap-2 pt-4 border-t border-red-200">
                       {booking.status === "confirmed" && (
                         <Button
                           variant="outline"
                           size="sm"
-                          className="border-green-300 text-green-700 hover:bg-green-50 bg-transparent"
+                          className="border-red-300 text-red-700 hover:bg-red-50 bg-transparent"
                         >
                           Modify Booking
                         </Button>
                       )}
-                      <Button variant="ghost" size="sm" className="text-green-700 hover:bg-green-50">
+                      <Button variant="ghost" size="sm" className="text-red-700 hover:bg-red-50">
                         View Details
                       </Button>
                       {booking.status === "confirmed" && (
@@ -221,6 +223,74 @@ export default function ProfilePage() {
           </CardContent>
         </Card>
       </div>
-    </div>
+
+      {/* Call to Action Section */}
+      <section className="py-10 text-white relative overflow-hidden bg-linear-to-br from-red-300 to-red-200" 
+      style={{ boxShadow: '0 -9px 20px -9px rgba(0,0,0,0.15)' }}>
+        <div className="absolute inset-0 bg-linear-radial from-red-600/20 via-transparent to-transparent" />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+            >
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
+              animate={{ backgroundPosition: ["0%", "100%", "0%"] }}
+              transition={{ duration: 5, repeat: Infinity }}
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg, #66000A, #99000F, #CC0014, #FF3347, #FF6675)",
+                backgroundSize: "200% auto",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              Ready to Experience Eurotel?
+            </motion.h2>
+          
+              <p className="text-xl mb-12 text-pretty max-w-2xl mx-auto opacity-95 text-red-900">
+                Contact us today to book your stay or learn more about our services and amenities.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-12">
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center bg-red-800/90">
+                    <Phone className="w-6 h-6 text-red-300" />
+                  </div>
+                  <span className="text-lg">+1 (555) 123-4567</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center bg-red-800/90">
+                    <Mail className="w-6 h-6 text-red-300" />
+                  </div>
+                  <span className="text-lg">info@eurotel.com</span>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 rounded-full flex items-center justify-center bg-red-800/90">
+                    <MapPin className="w-6 h-6 text-red-300" />
+                  </div>
+                  <span className="text-lg">123 Luxury Ave, City Center</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-6 items-center justify-center">
+                <Link href="/rooms">
+                  <button 
+                    className="group w-46 h-16 px-10 py-4 rounded-sm flex items-center justify-center font-medium text-lg transition-all duration-500 transform hover:scale-105 text-gray-200 shadow-2xl hover:shadow-3xl bg-red-800 border-2 border-red-800/40 hover:text-white hover:bg-red-800/30 hover:backdrop-blur-sm">
+                    Book Now
+                  </button>
+                </Link>
+                <Link href="/contact">
+                  <button
+                    className="w-46 h-16 px-10 py-4 rounded-sm font-medium text-lg transition-all duration-500 border-2 border-red-800/40 text-gray-200 bg-red-800/30 backdrop-blur-sm hover:bg-red-800 hover:border-red-800 transform hover:scale-105">
+                    Contact Us
+                  </button>
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+      </section>
+    </main>
   )
 }

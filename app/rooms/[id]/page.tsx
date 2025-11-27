@@ -366,13 +366,13 @@ export default function RoomDetailPage() {
   const maxGuests = getMaxGuests(room.type)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-yellow-50">
+    <div className="min-h-screen bg-linear-to-br from-green-50 via-white to-yellow-50">
       {/* Toast Notification */}
       {showToast && (
         <div className="fixed top-4 right-4 z-50 animate-in slide-in-from-top-2 duration-300">
           <div className="bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg max-w-sm">
             <div className="flex items-start">
-              <AlertCircle className="w-5 h-5 mt-0.5 mr-3 flex-shrink-0" />
+              <AlertCircle className="w-5 h-5 mt-0.5 mr-3 shrink-0" />
               <div>
                 <h4 className="font-semibold text-sm">Guest Limit Exceeded!</h4>
                 <p className="text-sm opacity-90 mt-1">
@@ -393,7 +393,7 @@ export default function RoomDetailPage() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
         </div>
 
         {/* Image Navigation */}
@@ -442,11 +442,17 @@ export default function RoomDetailPage() {
         </div>
 
         {/* Room Status and Price */}
-        <div className="absolute top-6 right-6 flex gap-2">
-          <Badge className="bg-green-600/90 text-white backdrop-blur-sm">
-            {room?.available ? "Available" : "Unavailable"}
+        <div className="absolute top-6 right-6 flex">
+          <Badge
+            className={
+              room.available
+              ? "bg-green-600/90 text-white backdrop-blur-sm"
+              : "bg-red-500/90 text-white backdrop-blur-sm"
+            }
+             variant={room.available ? "default" : "secondary"}
+          >
+            {room.available ? "Available" : "Booked"}
           </Badge>
-          <Badge className="bg-yellow-500/90 text-green-900 backdrop-blur-sm font-bold">${room?.price}/night</Badge>
         </div>
 
         {/* Room Title Overlay */}
@@ -462,59 +468,59 @@ export default function RoomDetailPage() {
           {/* Room Details - Left Column - Now takes 3/5 instead of 2/3 */}
           <div className="lg:col-span-3 space-y-6">
             {/* Room Specifications */}
-            <Card className="border-green-200 shadow-lg overflow-hidden py-0">
-              <CardHeader className="bg-gradient-to-r from-green-700 to-green-600 text-white p-4">
-                <CardTitle className="flex items-center text-white">
+            <Card className="border-red-200 shadow-lg overflow-hidden">
+              <CardHeader className="bg-linear-to-r from-red-700 to-red-600 text-white py-4">
+                <CardTitle className="flex items-center text-white text-xl">
                   <Bed className="w-5 h-5 mr-2" />
                   Room Specifications
                 </CardTitle>
               </CardHeader>
-              <CardContent className="p-4">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              <CardContent className="py-2">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                   <div className="text-center">
-                    <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-2">
-                      <Bed className="w-6 h-6 text-green-600" />
+                    <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-2">
+                      <Bed className="w-6 h-6 text-orange-400" />
                     </div>
-                    <p className="font-semibold text-green-800">Bed Type</p>
-                    <p className="text-sm text-green-600">
+                    <p className="font-semibold text-red-800">Bed Type</p>
+                    <p className="text-sm text-red-700">
                       {room?.type === "single" ? "Queen Bed" : room?.type === "double" ? "King Bed" : "King + Sofa"}
                     </p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-2">
-                      <Users className="w-6 h-6 text-green-600" />
+                    <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-2">
+                      <Users className="w-6 h-6 text-orange-400" />
                     </div>
-                    <p className="font-semibold text-green-800">Capacity</p>
-                    <p className="text-sm text-green-600">
+                    <p className="font-semibold text-red-800">Capacity</p>
+                    <p className="text-sm text-red-700">
                       Max {maxGuests} Guests
                     </p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-2">
-                      <div className="w-6 h-6 border-2 border-green-600 rounded-sm flex items-center justify-center">
-                        <span className="text-xs font-bold text-green-600">m²</span>
+                    <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-2">
+                      <div className="w-6 h-6 border-2 border-orange-400 rounded-sm flex items-center justify-center">
+                        <span className="text-xs font-bold text-orange-400">m²</span>
                       </div>
                     </div>
-                    <p className="font-semibold text-green-800">Size</p>
-                    <p className="text-sm text-green-600">
+                    <p className="font-semibold text-red-800">Size</p>
+                    <p className="text-sm text-red-700">
                       {room?.type === "single" ? "25" : room?.type === "double" ? "35" : "55"} m²
                     </p>
                   </div>
                   <div className="text-center">
-                    <div className="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-2">
-                      <MapPin className="w-6 h-6 text-green-600" />
+                    <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-2">
+                      <MapPin className="w-6 h-6 text-orange-400" />
                     </div>
-                    <p className="font-semibold text-green-800">Location</p>
-                    <p className="text-sm text-green-600">Makati City</p>
+                    <p className="font-semibold text-red-800">Location</p>
+                    <p className="text-sm text-red-700">Makati City</p>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
             {/* Amenities Grid */}
-            <Card className="border-green-200 shadow-lg overflow-hidden py-0">
-              <CardHeader className="bg-gradient-to-r from-green-700 to-green-600 text-white p-4">
-                <CardTitle className="flex items-center text-white">
+            <Card className="border-red-200 shadow-lg overflow-hidden">
+              <CardHeader className="bg-linear-to-r from-red-700 to-red-600 text-white py-4">
+                <CardTitle className="flex items-center text-white text-xl">
                   <Star className="w-5 h-5 mr-2" />
                   Room Amenities
                 </CardTitle>
@@ -522,9 +528,9 @@ export default function RoomDetailPage() {
               <CardContent className="p-4">
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {room?.amenities.map((amenity, index) => (
-                    <div key={index} className="flex items-center p-3 bg-green-50 rounded-lg">
+                    <div key={index} className="text-orange-400 flex items-center p-3 bg-red-50 rounded-lg">
                       {getAmenityIcon(amenity)}
-                      <span className="ml-3 text-green-800 font-medium">{amenity}</span>
+                      <span className="ml-3 text-red-800 font-medium">{amenity}</span>
                     </div>
                   ))}
                 </div>
@@ -532,9 +538,9 @@ export default function RoomDetailPage() {
             </Card>
 
             {/* Hotel Features */}
-            <Card className="border-green-200 shadow-lg overflow-hidden py-0">
-              <CardHeader className="bg-gradient-to-r from-green-700 to-green-600 text-white p-4">
-                <CardTitle className="flex items-center text-white">
+            <Card className="border-red-200 shadow-lg overflow-hidden">
+              <CardHeader className="bg-linear-to-r from-red-700 to-red-600 text-white py-4">
+                <CardTitle className="flex items-center text-white text-xl">
                   <Shield className="w-5 h-5 mr-2" />
                   Hotel Features & Services
                 </CardTitle>
@@ -542,39 +548,39 @@ export default function RoomDetailPage() {
               <CardContent className="p-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-4 mt-1">
-                      <Coffee className="w-5 h-5 text-yellow-600" />
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1">
+                      <Coffee className="w-5 h-5 text-red-600" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-green-800 mb-1">24/7 Concierge Service</h4>
-                      <p className="text-sm text-green-600">Our dedicated team is available around the clock</p>
+                      <h4 className="font-semibold text-red-800 mb-1">24/7 Concierge Service</h4>
+                      <p className="text-sm text-red-700">Our dedicated team is available around the clock</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-4 mt-1">
-                      <Utensils className="w-5 h-5 text-yellow-600" />
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1">
+                      <Utensils className="w-5 h-5 text-red-600" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-green-800 mb-1">Complimentary Breakfast</h4>
-                      <p className="text-sm text-green-600">Start your day with our delicious continental breakfast</p>
+                      <h4 className="font-semibold text-red-800 mb-1">Complimentary Breakfast</h4>
+                      <p className="text-sm text-red-700">Start your day with our delicious continental breakfast</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-4 mt-1">
-                      <MapPin className="w-5 h-5 text-yellow-600" />
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1">
+                      <MapPin className="w-5 h-5 text-red-600" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-green-800 mb-1">Prime Makati Location</h4>
-                      <p className="text-sm text-green-600">Located in the heart of Makatis business district</p>
+                      <h4 className="font-semibold text-red-800 mb-1">Prime Makati Location</h4>
+                      <p className="text-sm text-red-700">Located in the heart of Makatis business district</p>
                     </div>
                   </div>
                   <div className="flex items-start">
-                    <div className="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-4 mt-1">
-                      <Heart className="w-5 h-5 text-yellow-600" />
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center mr-4 mt-1">
+                      <Heart className="w-5 h-5 text-red-600" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-green-800 mb-1">Spa & Wellness Center</h4>
-                      <p className="text-sm text-green-600">Relax and rejuvenate at our luxury spa</p>
+                      <h4 className="font-semibold text-red-800 mb-1">Spa & Wellness Center</h4>
+                      <p className="text-sm text-red-700">Relax and rejuvenate at our luxury spa</p>
                     </div>
                   </div>
                 </div>
@@ -583,14 +589,14 @@ export default function RoomDetailPage() {
           </div>
 
           {/* Booking Form - Right Column - Now takes 2/5 instead of 1/3 */}
-          <div className="lg:col-span-2 space-y-6">
-            <Card className="border-green-200 shadow-lg overflow-hidden sticky top-4 py-0">
-              <CardHeader className="bg-gradient-to-r from-green-800 to-green-700 text-white p-4">
-                <CardTitle className="flex items-center text-white">
+          <div className="lg:col-span-2">
+            <Card className="border-red-200 shadow-lg overflow-hidden sticky top-4 py-0">
+              <CardHeader className="bg-linear-to-r from-red-800 to-red-700 text-white p-4">
+                <CardTitle className="flex items-center text-white text-xl">
                   <Calendar className="w-5 h-5 mr-2" />
                   Book This Room
                 </CardTitle>
-                <CardDescription className="text-green-100">
+                <CardDescription className="text-red-100">
                   Fill in your details to complete the booking
                 </CardDescription>
               </CardHeader>
@@ -598,56 +604,57 @@ export default function RoomDetailPage() {
                 {user ? (
                   <form onSubmit={handleBooking} className="space-y-4">
                     {/* Room Summary Section */}
-                    <Card className="bg-gradient-to-r from-green-50 to-yellow-50 border-green-200 overflow-hidden">
+                    <Card className="bg-linear-to-r from-red-50 to-orange-50 border-red-200 overflow-hidden">
                       <div className="p-4">
                         <div className="flex items-start justify-between mb-3">
                           <div className="flex-1">
-                            <h4 className="font-bold text-green-800 text-lg">{room.name}</h4>
-                            <p className="text-sm text-green-600 mt-1">{room.description}</p>
+                            <h4 className="font-bold text-red-800 text-lg">{room.name}</h4>
+                            <p className="text-sm text-red-700 mt-1">{room.description}</p>
                           </div>
                           <div className="ml-4 text-right">
-                            <div className="text-2xl font-bold text-yellow-600">${room.price}</div>
-                            <div className="text-sm text-green-700">per night</div>
+                            <div className="text-2xl font-bold text-yellow-600">
+                              <span className="font-medium">₱&nbsp;</span>{room.price}</div>
+                            <div className="text-sm text-yellow-800">per night</div>
                           </div>
                         </div>
                         
                         <div className="grid grid-cols-2 gap-3 text-sm">
                           <div className="flex items-center">
-                            <Bed className="w-4 h-4 text-green-600 mr-2" />
-                            <span className="text-green-700">
+                            <Bed className="w-4 h-4 text-red-600 mr-2" />
+                            <span className="text-red-800">
                               {room?.type === "single" ? "Queen Bed" : room?.type === "double" ? "King Bed" : "King + Sofa"}
                             </span>
                           </div>
                           <div className="flex items-center">
-                            <Users className="w-4 h-4 text-green-600 mr-2" />
-                            <span className="text-green-700">
+                            <Users className="w-4 h-4 text-red-600 mr-2" />
+                            <span className="text-red-800">
                               Max {maxGuests} Guests
                             </span>
                           </div>
                           <div className="flex items-center">
-                            <div className="w-4 h-4 border border-green-600 rounded-sm flex items-center justify-center mr-2">
-                              <span className="text-xs font-bold text-green-600">m²</span>
+                            <div className="w-4 h-4 border border-red-600 rounded-sm flex items-center justify-center mr-2">
+                              <span className="text-xs font-bold text-red-600">m²</span>
                             </div>
-                            <span className="text-green-700">
+                            <span className="text-red-800">
                               {room?.type === "single" ? "25" : room?.type === "double" ? "35" : "55"} m²
                             </span>
                           </div>
                           <div className="flex items-center">
-                            <MapPin className="w-4 h-4 text-green-600 mr-2" />
-                            <span className="text-green-700">Makati City</span>
+                            <MapPin className="w-4 h-4 text-red-600 mr-2" />
+                            <span className="text-red-800">Makati City</span>
                           </div>
                         </div>
 
                         {/* Quick Amenities Preview */}
-                        <div className="mt-3 pt-3 border-t border-green-200">
+                        <div className="mt-3 pt-3 border-t border-red-200">
                           <div className="flex flex-wrap gap-1">
                             {room.amenities.slice(0, 4).map((amenity, index) => (
-                              <Badge key={index} variant="outline" className="text-xs bg-white/50 text-green-700 border-green-300">
+                              <Badge key={index} variant="outline" className="text-xs bg-white/50 text-red-700 border-red-300">
                                 {amenity}
                               </Badge>
                             ))}
                             {room.amenities.length > 4 && (
-                              <Badge variant="outline" className="text-xs bg-white/50 text-green-600 border-green-300">
+                              <Badge variant="outline" className="text-xs bg-white/50 text-red-600 border-red-300">
                                 +{room.amenities.length - 4} more
                               </Badge>
                             )}
@@ -655,10 +662,11 @@ export default function RoomDetailPage() {
                         </div>
                       </div>
                     </Card>
+
                     {/* Dates */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="checkIn" className="text-green-800 font-medium">
+                        <Label htmlFor="checkIn" className="text-red-800 font-medium">
                           Check-in Date
                         </Label>
                         <Input
@@ -667,12 +675,12 @@ export default function RoomDetailPage() {
                           value={bookingData.checkIn}
                           onChange={(e) => setBookingData({ ...bookingData, checkIn: e.target.value })}
                           min={new Date().toISOString().split("T")[0]}
-                          className="border-green-200 focus:border-green-500 focus:ring-green-500"
+                          className="border-red-200 focus:border-red-500 focus:ring-red-500"
                           required
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="checkOut" className="text-green-800 font-medium">
+                        <Label htmlFor="checkOut" className="text-red-800 font-medium">
                           Check-out Date
                         </Label>
                         <Input
@@ -681,7 +689,7 @@ export default function RoomDetailPage() {
                           value={bookingData.checkOut}
                           onChange={(e) => setBookingData({ ...bookingData, checkOut: e.target.value })}
                           min={bookingData.checkIn || new Date().toISOString().split("T")[0]}
-                          className="border-green-200 focus:border-green-500 focus:ring-green-500"
+                          className="border-red-200 focus:border-red-500 focus:ring-red-500"
                           required
                         />
                       </div>
@@ -689,7 +697,7 @@ export default function RoomDetailPage() {
 
                     {/* Guests with Validation */}
                     <div className="space-y-2">
-                      <Label htmlFor="guests" className="text-green-800 font-medium">
+                      <Label htmlFor="guests" className="text-red-800 font-medium">
                         Number of Guests (Max {maxGuests})
                       </Label>
                       <Input
@@ -699,7 +707,7 @@ export default function RoomDetailPage() {
                         max={maxGuests}
                         value={bookingData.guests}
                         onChange={handleGuestChange}
-                        className={`border-green-200 focus:border-green-500 focus:ring-green-500 ${
+                        className={`border-red-200 focus:border-green-500 focus:ring-green-500 ${
                           guestValidationError ? 'border-red-500 focus:border-red-500' : ''
                         }`}
                         required
@@ -717,33 +725,33 @@ export default function RoomDetailPage() {
                     {/* Guest Information */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="firstName" className="text-green-800 font-medium">
+                        <Label htmlFor="firstName" className="text-red-800 font-medium">
                           First Name
                         </Label>
                         <Input
                           id="firstName"
                           value={bookingData.firstName}
                           onChange={(e) => setBookingData({ ...bookingData, firstName: e.target.value })}
-                          className="border-green-200 focus:border-green-500 focus:ring-green-500"
+                          className="border-red-200 focus:border-red-500 focus:ring-red-500"
                           required
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="lastName" className="text-green-800 font-medium">
+                        <Label htmlFor="lastName" className="text-red-800 font-medium">
                           Last Name
                         </Label>
                         <Input
                           id="lastName"
                           value={bookingData.lastName}
                           onChange={(e) => setBookingData({ ...bookingData, lastName: e.target.value })}
-                          className="border-green-200 focus:border-green-500 focus:ring-green-500"
+                          className="border-red-200 focus:border-red-500 focus:ring-red-500"
                           required
                         />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-green-800 font-medium">
+                      <Label htmlFor="email" className="text-red-800 font-medium">
                         Email
                       </Label>
                       <Input
@@ -751,13 +759,13 @@ export default function RoomDetailPage() {
                         type="email"
                         value={bookingData.email}
                         onChange={(e) => setBookingData({ ...bookingData, email: e.target.value })}
-                        className="border-green-200 focus:border-green-500 focus:ring-green-500"
+                        className="border-red-200 focus:border-red-500 focus:ring-red-500"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="phone" className="text-green-800 font-medium">
+                      <Label htmlFor="phone" className="text-red-800 font-medium">
                         Phone Number
                       </Label>
                       <Input
@@ -765,26 +773,26 @@ export default function RoomDetailPage() {
                         type="tel"
                         value={bookingData.phone}
                         onChange={(e) => setBookingData({ ...bookingData, phone: e.target.value })}
-                        className="border-green-200 focus:border-green-500 focus:ring-green-500"
+                        className="border-red-200 focus:border-red-500 focus:ring-red-500"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="address" className="text-green-800 font-medium">
+                      <Label htmlFor="address" className="text-red-800 font-medium">
                         Address
                       </Label>
                       <Textarea
                         id="address"
                         value={bookingData.address}
                         onChange={(e) => setBookingData({ ...bookingData, address: e.target.value })}
-                        className="border-green-200 focus:border-green-500 focus:ring-green-500"
+                        className="border-red-200 focus:border-red-500 focus:ring-red-500"
                         required
                       />
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="specialRequests" className="text-green-800 font-medium">
+                      <Label htmlFor="specialRequests" className="text-red-800 font-medium">
                         Special Requests (Optional)
                       </Label>
                       <Textarea
@@ -792,23 +800,23 @@ export default function RoomDetailPage() {
                         value={bookingData.specialRequests}
                         onChange={(e) => setBookingData({ ...bookingData, specialRequests: e.target.value })}
                         placeholder="Any special requests or preferences..."
-                        className="border-green-200 focus:border-green-500 focus:ring-green-500"
+                        className="border-red-200 focus:border-red-500 focus:ring-red-500"
                       />
                     </div>
 
                     {/* Booking Summary */}
                     {bookingData.checkIn && bookingData.checkOut && (
-                      <Card className="bg-gradient-to-r from-green-50 to-yellow-50 border-green-200 overflow-hidden">
+                      <Card className="bg-linear-to-r from-red-50 via-orange-50 to-red-50 border-red-200 overflow-hidden">
                         <div className="p-4">
-                          <h4 className="font-semibold mb-2 text-green-800">Booking Summary</h4>
+                          <h4 className="font-semibold mb-2 text-red-800">Booking Summary</h4>
                           <div className="space-y-1 text-sm">
                             <div className="flex justify-between">
-                              <span className="text-green-700">Room:</span>
-                              <span className="text-green-800 font-medium">{room.name}</span>
+                              <span className="text-red-700">Room:</span>
+                              <span className="text-red-800 font-medium">{room.name}</span>
                             </div>
                             <div className="flex justify-between">
-                              <span className="text-green-700">Nights:</span>
-                              <span className="text-green-800 font-medium">
+                              <span className="text-red-700">Nights:</span>
+                              <span className="text-red-800 font-medium">
                                 {Math.ceil(
                                   (new Date(bookingData.checkOut).getTime() - new Date(bookingData.checkIn).getTime()) /
                                     (1000 * 60 * 60 * 24),
@@ -816,11 +824,11 @@ export default function RoomDetailPage() {
                               </span>
                             </div>
                             <div className="flex justify-between">
-                              <span className="text-green-700">Rate per night:</span>
-                              <span className="text-green-800 font-medium">${room.price}</span>
+                              <span className="text-red-700">Rate per night:</span>
+                              <span className="text-red-800 font-medium">${room.price}</span>
                             </div>
-                            <div className="flex justify-between font-semibold text-base border-t border-green-300 pt-1">
-                              <span className="text-green-800">Total:</span>
+                            <div className="flex justify-between font-semibold text-base border-t border-red-300 pt-1">
+                              <span className="text-red-800">Total:</span>
                               <span className="text-yellow-600 font-bold">${calculateTotal()}</span>
                             </div>
                           </div>
@@ -830,7 +838,7 @@ export default function RoomDetailPage() {
 
                     <Button
                       type="submit"
-                      className="w-full bg-gradient-to-r from-green-700 to-green-600 hover:from-green-800 hover:to-green-700 text-white font-semibold"
+                      className="w-full bg-linear-to-r from-red-700 to-red-600 hover:from-red-800 hover:to-red-700 text-white font-semibold"
                       disabled={isBooking || calculateTotal() === 0 || !!guestValidationError}
                     >
                       {isBooking ? (
@@ -848,12 +856,12 @@ export default function RoomDetailPage() {
                   </form>
                 ) : (
                   <div className="text-center py-8">
-                    <User className="w-12 h-12 text-green-600 mx-auto mb-4" />
-                    <h3 className="text-lg font-semibold mb-2 text-green-800">Login Required</h3>
-                    <p className="text-green-600 mb-4">Please log in to your account to book this room.</p>
+                    <User className="w-12 h-12 text-red-600 mx-auto mb-4" />
+                    <h3 className="text-lg font-semibold mb-2 text-red-800">Login Required</h3>
+                    <p className="text-red-600 mb-4">Please log in to your account to book this room.</p>
                     <Link href="/login">
-                      <Button className="bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-600 hover:to-yellow-500 text-green-900 font-semibold">
-                        Login to Book
+                      <Button className="bg-linear-to-r from-red-500 to-red-400 hover:from-red-600 hover:to-red-500 text-red-900 font-semibold">
+                        Book Room
                       </Button>
                     </Link>
                   </div>

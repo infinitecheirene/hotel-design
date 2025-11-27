@@ -63,19 +63,21 @@ export function Navbar() {
             <PWAInstallButton />
             
             {user ? (
-              <div className="flex items-center space-x-4">
-                <Link href="/profile" className="text-sm text-muted-foreground hover:text-red-200 transition-colors">
-                  Profile
+              <div className="flex items-center space-x-2">
+                <Link href="/profile">
+                  <Button variant="ghost" size="sm" className="px-6 bg-red-900 text-red-200 border border-red-200 hover:bg-red-200 hover:text-red-900 hover:border-red-900">
+                    Profile
+                  </Button>
                 </Link>
-                <span className="text-sm text-muted-foreground">Welcome, {user.username}</span>
+
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={handleLogout}
-                  className="flex items-center space-x-2 bg-transparent"
+                  className="flex items-center space-x-2 bg-red-200 text-red-900 border border-red-900 hover:bg-red-900 hover:text-red-200 hover:border-red-200"
                 >
-                  <LogOut className="w-4 h-4" />
                   <span>Logout</span>
+                  <LogOut className="w-4 h-4" />
                 </Button>
               </div>
             ) : (
@@ -125,21 +127,31 @@ export function Navbar() {
               <div className="border-t border-border pt-4 mt-4">
                 {user ? (
                   <div className="space-y-2">
-                    <div className="px-3 py-2 text-sm text-muted-foreground">Welcome, {user.username}</div>
-                    <Link href="/profile" onClick={() => setIsMobileMenuOpen(false)}>
-                      <Button variant="ghost" size="sm" className="w-full justify-start my-2">
-                        Profile
+                    {/* keep avatar+welcome visible, but show Profile + Logout buttons below */}
+                    <div className="flex items-center px-3 py-2 space-x-3">
+                      <div className="w-8 h-8 rounded-full bg-red-200 text-red-900 flex items-center justify-center font-semibold text-sm">
+                        {user.username?.charAt(0).toUpperCase()}
+                      </div>
+                      <div className="text-sm text-muted-foreground">Welcome, {user.username}</div>
+                    </div>
+
+                    <div className="px-3 flex flex-col space-y-2">
+                      <Link href="/profile" onClick={() => setIsMobileMenuOpen(false)}>
+                        <Button variant="ghost" size="sm" className="w-full justify-start">
+                          Profile
+                        </Button>
+                      </Link>
+
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={handleLogout}
+                        className="w-full flex items-center justify-center space-x-2"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Logout</span>
                       </Button>
-                    </Link>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={handleLogout}
-                      className="w-full flex items-center justify-center space-x-2 bg-transparent my-2"
-                    >
-                      <LogOut className="w-4 h-4" />
-                      <span>Logout</span>
-                    </Button>
+                    </div>
                   </div>
                 ) : (
                   <div className="space-y-2">
