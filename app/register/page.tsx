@@ -23,40 +23,86 @@ export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  setIsLoading(true)
 
-    if (formData.password !== formData.confirmPassword) {
-      console.error("Passwords do not match")
+  if (formData.password !== formData.confirmPassword) {
+    alert("Passwords do not match")
+    setIsLoading(false)
+    return
+  }
+
+  try {
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000'
+    
+    const payload = {
+      username: formData.username,
+      email: formData.email,
+      password: formData.password,
+    }
+    
+    console.log('=== REGISTRATION DEBUG ===')
+    console.log('API URL:', `${apiUrl}/api/auth/register`)
+    console.log('Payload:', payload)
+    
+    const response = await fetch(`${apiUrl}/api/auth/register`, {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify(payload),
+    })
+
+    console.log('Response Status:', response.status)
+    console.log('Response Headers:', Object.fromEntries(response.headers.entries()))
+    
+    const responseText = await response.text()
+    console.log('Raw Response:', responseText)
+    
+    let data
+    try {
+      data = JSON.parse(responseText)
+      console.log('Parsed Response:', data)
+    } catch (parseError) {
+      console.error('Failed to parse JSON:', parseError)
+      alert('Server returned invalid response: ' + responseText)
       setIsLoading(false)
       return
     }
 
-    try {
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: formData.username,
-          email: formData.email,
-          password: formData.password,
-        }),
-      })
-
-      const data = await response.json()
-
-      if (response.ok) {
-        router.push("/login?message=Registration successful! Please login.")
-      } else {
-        console.error(data.error || "Registration failed")
+    if (response.ok && data.success) {
+      if (data.data?.token) {
+        localStorage.setItem('auth_token', data.data.token)
       }
-    } catch {
-      console.error("Network error. Please try again.")
-    } finally {
-      setIsLoading(false)
+      
+      alert(data.message || "Registration successful!")
+      router.push("/login?message=Registration successful! Please login.")
+    } else {
+      // Display all validation errors
+      let errorMessage = data.message || 'Registration failed'
+      
+      if (data.errors) {
+        console.log('Validation Errors:', data.errors)
+        const errorList = Object.entries(data.errors)
+          .map(([field, messages]) => {
+            const msgArray = Array.isArray(messages) ? messages : [messages]
+            return `${field}: ${msgArray.join(', ')}`
+          })
+          .join('\n')
+        errorMessage += '\n\n' + errorList
+      }
+      
+      alert(errorMessage)
     }
+  } catch (error) {
+    console.error("Caught Error:", error)
+    alert("Network error. Please try again. Check console for details.")
+  } finally {
+    setIsLoading(false)
   }
+}
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-red-200 to-red-300 relative overflow-hidden">
