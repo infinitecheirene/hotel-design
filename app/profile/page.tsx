@@ -110,7 +110,7 @@ export default function ProfilePage() {
             </div>
             <div>
               <h1 className="text-4xl md:text-3xl font-bold mb-2">
-                Welcome back, <span className="text-yellow-400">{user.name}</span>!
+                Welcome back, <span className="text-yellow-400">{user.name}</span>&nbsp;!
               </h1>
               <p className="text-green-100">Manage your bookings and account details</p>
             </div>
@@ -197,19 +197,12 @@ export default function ProfilePage() {
                       </div>
                     </div>
 
-                    <div className="flex gap-2 pt-4 border-t border-red-200">
+                    <div className="flex justify-between gap-2 pt-4 border-t border-red-200">
                       {booking.status === "confirmed" && (
-                        <Button
-                          variant="outline"
-                          size="sm"
-                          className="border-red-300 text-red-700 hover:bg-red-50 bg-transparent"
-                        >
-                          Modify Booking
+                        <Button variant="ghost" size="sm" className="text-red-700 hover:bg-red-50 border border-red-400">
+                          View Details
                         </Button>
                       )}
-                      <Button variant="ghost" size="sm" className="text-red-700 hover:bg-red-50">
-                        View Details
-                      </Button>
                       {booking.status === "confirmed" && (
                         <Button variant="ghost" size="sm" className="text-red-600 hover:bg-red-50">
                           Cancel
