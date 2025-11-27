@@ -106,11 +106,11 @@ export default function ProfilePage() {
         <div className="bg-linear-to-r from-red-800 to-red-700 rounded-2xl p-8 mb-8 text-white shadow-xl">
           <div className="flex items-center gap-4 mb-6">
             <div className="hidden md:flex lg:flex w-20 h-20 rounded-full bg-linear-to-r bg-red-400 items-center justify-center text-2xl font-bold text-red-900">
-              {user.username.charAt(0).toUpperCase()}
+              {user.name.charAt(0).toUpperCase()}
             </div>
             <div>
               <h1 className="text-4xl md:text-3xl font-bold mb-2">
-                Welcome back, <span className="text-yellow-400">{user.username}</span>!
+                Welcome back, <span className="text-yellow-400">{user.name}</span>!
               </h1>
               <p className="text-green-100">Manage your bookings and account details</p>
             </div>

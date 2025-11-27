@@ -263,11 +263,11 @@ export default function ContactPage() {
               <div className="p-8">
                 {submitted ? (
                   <div className="text-center py-12">
-                    <div className="w-24 h-24 rounded-full bg-linear-to-r from-red-600 to-red-500 flex items-center justify-center mx-auto mb-6 animate-bounce">
+                    <div className="w-24 h-24 rounded-full bg-linear-to-r from-green-600 to-green-500 flex items-center justify-center mx-auto mb-6 animate-bounce">
                       <CheckCircle2 className="w-12 h-12 text-white" />
                     </div>
                     <h3 className="text-3xl font-bold text-red-800 mb-4">Message Sent!</h3>
-                    <p className="text-red-600 mb-8 text-lg">
+                    <p className="text-red-700 mb-8 text-lg">
                       Thank you for reaching out. Our team will contact you within 30 minutes.
                     </p>
                     <Button

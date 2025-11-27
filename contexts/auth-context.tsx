@@ -4,13 +4,13 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from "
 
 interface User {
   id: string
-  username: string
+  name: string
   email: string
 }
 
 interface AuthContextType {
   user: User | null
-  login: (username: string, password: string) => Promise<boolean>
+  login: (name: string, password: string) => Promise<boolean>
   /** set user directly on the client provider and persist to localStorage */
   setUserData: (user: User | null) => void
   logout: () => Promise<void>
@@ -42,7 +42,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsLoading(false)
   }, [])
 
-  const login = async (username: string, password: string): Promise<boolean> => {
+  const login = async (name: string, password: string): Promise<boolean> => {
     setIsLoading(true)
     try {
       const response = await fetch("/api/auth/login", {
@@ -50,7 +50,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ name, password }),
       })
 
       if (response.ok) {

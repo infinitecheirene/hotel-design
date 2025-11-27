@@ -126,7 +126,7 @@ export function Navbar() {
                       <div className="flex items-center justify-center">
                         <CircleUserRound className="text-red-200 w-8 h-8 py-1" />
                           <Link href="/profile" onClick={() => setIsMobileMenuOpen(false)}>
-                            <div className="text-md text-red-100 py-1 pt-2">Welcome, {user.username}</div>
+                            <div className="text-md text-red-100 py-1 pt-2">Welcome, {user.name}</div>
                           </Link>
                       </div>
                     </div>

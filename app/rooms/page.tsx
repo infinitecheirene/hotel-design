@@ -735,10 +735,10 @@ export default function RoomsComponent() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-6 items-center justify-center">
-                <Link href="/rooms">
+                <Link href="/about">
                   <button 
                     className="group w-46 h-16 px-10 py-4 rounded-sm flex items-center justify-center font-medium text-lg transition-all duration-500 transform hover:scale-105 text-gray-200 shadow-2xl hover:shadow-3xl bg-red-800 border-2 border-red-800/40 hover:text-white hover:bg-red-800/30 hover:backdrop-blur-sm">
-                    Book Now
+                    Learn More
                   </button>
                 </Link>
                 <Link href="/contact">

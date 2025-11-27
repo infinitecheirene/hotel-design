@@ -465,7 +465,7 @@ export default function RoomDetailPage() {
         {/* Changed from lg:grid-cols-3 to lg:grid-cols-5 and adjusted column spans */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
           {/* Room Details - Left Column - Now takes 3/5 instead of 2/3 */}
-          <div className="lg:col-span-3 space-y-6">
+          <div className="lg:col-span-2 space-y-6">
             {/* Room Specifications */}
             <Card className="border-red-200 shadow-lg overflow-hidden">
               <CardHeader className="bg-linear-to-r from-red-700 to-red-600 text-white py-4">
@@ -475,7 +475,7 @@ export default function RoomDetailPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="py-2">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2 pb-5 lg:pb-0">
                   <div className="text-center">
                     <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center mx-auto mb-2">
                       <Bed className="w-6 h-6 text-orange-400" />
@@ -588,8 +588,8 @@ export default function RoomDetailPage() {
           </div>
 
           {/* Booking Form - Right Column - Now takes 2/5 instead of 1/3 */}
-          <div className="lg:col-span-2">
-            <Card className="border-red-200 shadow-lg overflow-hidden sticky top-4 py-0">
+          <div className="lg:col-span-3">
+            <Card className="border-red-200 shadow-lg overflow-hidden top-4 py-0">
               <CardHeader className="bg-linear-to-r from-red-800 to-red-700 text-white p-4">
                 <CardTitle className="flex items-center text-white text-xl">
                   <Calendar className="w-5 h-5 mr-2" />
@@ -844,12 +844,17 @@ export default function RoomDetailPage() {
                   <div className="text-center py-8">
                     <User className="w-12 h-12 text-red-600 mx-auto mb-4" />
                     <h3 className="text-lg font-semibold mb-2 text-red-800">Login Required</h3>
-                    <p className="text-red-600 mb-4">Please log in to your account to book this room.</p>
-                    <Link href="/login">
-                      <Button className="bg-linear-to-r from-red-500 to-red-400 hover:from-red-600 hover:to-red-500 text-red-900 font-semibold">
-                        Book Room
-                      </Button>
-                    </Link>
+                    <p className="text-red-600 mb-4">Please log in or register to book this room.</p>
+                      <Link href="/login">
+                        <Button className="w-22 h-8 mx-2 bg-linear-to-r bg-red-500 hover:from-red-600 hover:to-red-500 text-red-100 font-semibold">
+                          Login 
+                        </Button>
+                      </Link>
+                      <Link href="/register">
+                        <Button className="w-22 h-8 mx-2 bg-linear-to-r bg-red-500 hover:from-red-600 hover:to-red-500 text-red-100 font-semibold">
+                          Register
+                        </Button>
+                      </Link>
                   </div>
                 )}
               </CardContent>

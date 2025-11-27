@@ -13,7 +13,7 @@ import Link from "next/link"
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -37,7 +37,7 @@ const handleSubmit = async (e: React.FormEvent) => {
     const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000'
     
     const payload = {
-      username: formData.username,
+      name: formData.name,
       email: formData.email,
       password: formData.password,
     }
@@ -124,17 +124,17 @@ const handleSubmit = async (e: React.FormEvent) => {
         <CardContent className="p-6">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="username" className="text-sm font-medium text-red-800">
-                Username
+              <Label htmlFor="name" className="text-sm font-medium text-red-800">
+                Name
               </Label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-red-600" />
                 <Input
-                  id="username"
+                  id="name"
                   type="text"
-                  placeholder="Enter your username"
-                  value={formData.username}
-                  onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                  placeholder="Enter your name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="pl-10 border-red-200 focus:border-red-500 focus:ring-red-500"
                   required
                 />
