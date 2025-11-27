@@ -13,28 +13,47 @@ import { CustomLoader } from "@/components/custom-loader"
 import { Eye, EyeOff, LogIn, CircleChevronLeft } from "lucide-react"
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("")
+  const [emailOrUsername, setEmailOrUsername] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { login, isLoading } = useAuth()
   const router = useRouter()
 
+  // Helper function to check if input is an email
+  const isEmail = (input: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(input)
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
 
     // Basic validation
-    if (!username.trim() || !password.trim()) {
+    if (!emailOrUsername.trim() || !password.trim()) {
       alert("Please fill in all fields")
       setIsSubmitting(false)
       return
     }
 
-    if (username.length < 3) {
-      alert("Username must be at least 3 characters long")
-      setIsSubmitting(false)
-      return
+    const trimmedInput = emailOrUsername.trim()
+
+    // Validate based on whether it's email or username
+    if (isEmail(trimmedInput)) {
+      // Email validation
+      if (trimmedInput.length < 5) {
+        alert("Please enter a valid email address")
+        setIsSubmitting(false)
+        return
+      }
+    } else {
+      // Username validation
+      if (trimmedInput.length < 3) {
+        alert("Username must be at least 3 characters long")
+        setIsSubmitting(false)
+        return
+      }
     }
 
     if (password.length < 6) {
@@ -44,14 +63,82 @@ export default function LoginPage() {
     }
 
     try {
-      const success = await login(username, password)
-      if (success) {
-        router.push("/")
-      } else {
-        alert("Invalid username or password")
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000'
+      
+      // Determine if input is email or username and structure payload accordingly
+      const payload = isEmail(trimmedInput)
+        ? { email: trimmedInput, password: password }
+        : { username: trimmedInput, password: password }
+      
+      console.log('=== LOGIN DEBUG ===')
+      console.log('API URL:', `${apiUrl}/api/auth/login`)
+      console.log('Payload:', { 
+        ...(isEmail(trimmedInput) ? { email: trimmedInput } : { username: trimmedInput }), 
+        password: '[HIDDEN]' 
+      })
+      
+      const response = await fetch(`${apiUrl}/api/auth/login`, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+
+      console.log('Response Status:', response.status)
+      console.log('Response Headers:', Object.fromEntries(response.headers.entries()))
+      
+      const responseText = await response.text()
+      console.log('Raw Response:', responseText)
+      
+      let data
+      try {
+        data = JSON.parse(responseText)
+        console.log('Parsed Response:', data)
+      } catch (parseError) {
+        console.error('Failed to parse JSON:', parseError)
+        alert('Server returned invalid response: ' + responseText)
+        setIsSubmitting(false)
+        return
       }
-    } catch {
-      alert("An error occurred. Please try again.")
+
+      if (response.ok && data.success) {
+        // Store authentication token
+        if (data.data?.token) {
+          localStorage.setItem('auth_token', data.data.token)
+        }
+        
+        // Store user data if needed
+        if (data.data?.user) {
+          localStorage.setItem('user', JSON.stringify(data.data.user))
+        }
+        
+        alert(data.message || "Login successful!")
+        
+        // Navigate to home page
+        router.push("/")
+        router.refresh() // Refresh to update auth state
+      } else {
+        // Handle different error scenarios
+        let errorMessage = data.message || 'Login failed'
+        
+        if (data.errors) {
+          console.log('Validation Errors:', data.errors)
+          const errorList = Object.entries(data.errors)
+            .map(([field, messages]) => {
+              const msgArray = Array.isArray(messages) ? messages : [messages]
+              return `${field}: ${msgArray.join(', ')}`
+            })
+            .join('\n')
+          errorMessage += '\n\n' + errorList
+        }
+        
+        alert(errorMessage)
+      }
+    } catch (error) {
+      console.error("Caught Error:", error)
+      alert("Network error. Please check your connection and try again.")
     } finally {
       setIsSubmitting(false)
     }
@@ -77,15 +164,15 @@ export default function LoginPage() {
           <CardContent className="p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="username" className="text-red-800 font-medium text-md">
-                  Username
+                <Label htmlFor="emailOrUsername" className="text-red-800 font-medium text-md">
+                  Email or Username
                 </Label>
                 <Input
-                  id="username"
+                  id="emailOrUsername"
                   type="text"
-                  placeholder="Enter your username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Enter your email or username"
+                  value={emailOrUsername}
+                  onChange={(e) => setEmailOrUsername(e.target.value)}
                   disabled={isSubmitting}
                   className="w-full border-red-200 focus:border-red-500 focus:ring-red-500"
                 />
