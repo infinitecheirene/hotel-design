@@ -28,6 +28,9 @@ import {
   MapPin,
   Mail,
   Phone,
+  CircleX,
+  BedSingle,
+  BedDouble,
 } from "lucide-react"
 import Link from "next/link"
 import SectionDivider from "@/components/home/section-divider"
@@ -36,132 +39,55 @@ import AmenitiesSection from "@/components/home/amenities-section"
 export default function RoomsComponent() {
   const { rooms, setRooms, selectedRoom, setSelectedRoom } = useRoom()
   const { user } = useAuth()
+
   const [isLoading, setIsLoading] = useState(true)
   const [filteredRooms, setFilteredRooms] = useState<Room[]>([])
   const [searchTerm, setSearchTerm] = useState("")
-  const [typeFilter, setTypeFilter] = useState<string>("all")
-  const [priceFilter, setPriceFilter] = useState<string>("all")
+  const [typeFilter, setTypeFilter] = useState("all")
+  const [priceFilter, setPriceFilter] = useState("all")
   const [contentReady, setContentReady] = useState(false)
 
-  // Mock room data - In production, this would come from API
-  const mockRooms: Room[] = [
-    {
-      id: "1",
-      name: "Deluxe Single Room",
-      type: "single",
-      price: 150,
-      description: "Perfect for solo travelers, featuring a comfortable queen bed and modern amenities.",
-      amenities: ["Free WiFi", "Air Conditioning", "Mini Bar", "Room Service", "Flat Screen TV"],
-      image: "/deluxe-single-room.jpg",
-      available: true,
-      images: [],
-    },
-    {
-      id: "2",
-      name: "Superior Single Room",
-      type: "single",
-      price: 120,
-      description: "Cozy single room with all essential amenities for a comfortable stay.",
-      amenities: ["Free WiFi", "Air Conditioning", "Room Service", "Flat Screen TV"],
-      image: "/superior-single-room.jpg",
-      available: true,
-      images: [],
-    },
-    {
-      id: "3",
-      name: "Standard Double Room",
-      type: "double",
-      price: 200,
-      description: "Spacious double room perfect for couples with a king-size bed and city views.",
-      amenities: ["Free WiFi", "Air Conditioning", "Mini Bar", "Room Service", "Flat Screen TV", "City View"],
-      image: "/standard-double-room.jpg",
-      available: true,
-      images: [],
-    },
-    {
-      id: "4",
-      name: "Deluxe Double Room",
-      type: "double",
-      price: 250,
-      description: "Luxurious double room with premium amenities and stunning city panorama.",
-      amenities: [
-        "Free WiFi",
-        "Air Conditioning",
-        "Mini Bar",
-        "Room Service",
-        "Flat Screen TV",
-        "City View",
-        "Balcony",
-      ],
-      image: "/deluxe-double-room.jpg",
-      available: false,
-      images: [],
-    },
-    {
-      id: "5",
-      name: "Executive Suite",
-      type: "suite",
-      price: 400,
-      description: "Spacious suite with separate living area, perfect for business travelers and extended stays.",
-      amenities: [
-        "Free WiFi",
-        "Air Conditioning",
-        "Mini Bar",
-        "Room Service",
-        "Flat Screen TV",
-        "City View",
-        "Balcony",
-        "Work Desk",
-        "Sofa",
-      ],
-      image: "/executive-suite.jpg",
-      available: true,
-      images: [],
-    },
-    {
-      id: "6",
-      name: "Presidential Suite",
-      type: "suite",
-      price: 600,
-      description: "The ultimate luxury experience with premium amenities and personalized service.",
-      amenities: [
-        "Free WiFi",
-        "Air Conditioning",
-        "Mini Bar",
-        "Room Service",
-        "Flat Screen TV",
-        "City View",
-        "Balcony",
-        "Work Desk",
-        "Sofa",
-        "Jacuzzi",
-        "Butler Service",
-      ],
-      image: "/luxury-hotel-spa-and-wellness-center.jpg",
-      available: true,
-      images: [],
-    },
-  ]
+  // FETCH ROOMS FROM API
 
   useEffect(() => {
     const fetchRooms = async () => {
-      setIsLoading(true)
-      setContentReady(false)
+      try {
+        setIsLoading(true)
+        setContentReady(false)
 
-      // Simulate realistic loading time for better UX
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/rooms`, {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        })
 
-      setRooms(mockRooms)
-      setFilteredRooms(mockRooms)
+        if (!response.ok) {
+          throw new Error("Failed to fetch rooms")
+        }
+
+        const data = await response.json()
+
+        setRooms(data)
+        setFilteredRooms(data)
+      } catch (error) {
+        console.error("ROOM FETCH ERROR:", error)
+      } finally {
+        setIsLoading(false)
+        setContentReady(true)
+      }
     }
 
     fetchRooms()
   }, [setRooms])
 
-  useEffect(() => {
-    let filtered = rooms
+  // FILTER ROOMS
 
-    // Filter by search term
+  useEffect(() => {
+    let filtered = [...rooms]
+
     if (searchTerm) {
       filtered = filtered.filter(
         (room) =>
@@ -170,29 +96,20 @@ export default function RoomsComponent() {
       )
     }
 
-    // Filter by type
     if (typeFilter !== "all") {
       filtered = filtered.filter((room) => room.type === typeFilter)
     }
 
-    // Filter by price range
     if (priceFilter !== "all") {
-      switch (priceFilter) {
-        case "budget":
-          filtered = filtered.filter((room) => room.price <= 150)
-          break
-        case "mid":
-          filtered = filtered.filter((room) => room.price > 150 && room.price <= 300)
-          break
-        case "luxury":
-          filtered = filtered.filter((room) => room.price > 300)
-          break
-      }
+      if (priceFilter === "budget") filtered = filtered.filter((room) => room.price <= 150)
+      if (priceFilter === "mid") filtered = filtered.filter((room) => room.price > 150 && room.price <= 300)
+      if (priceFilter === "luxury") filtered = filtered.filter((room) => room.price > 300)
     }
 
     setFilteredRooms(filtered)
   }, [rooms, searchTerm, typeFilter, priceFilter])
 
+  // HANDLE ROOM SELECT
   const handleSelectRoom = (room: Room) => {
     if (!room.available) return
     setSelectedRoom(room)
@@ -216,26 +133,8 @@ export default function RoomsComponent() {
     }
   }
 
-  const getRoomTypeIcon = (type: string) => {
-    switch (type) {
-      case "single":
-        return <Bed className="w-5 h-5" />
-      case "double":
-        return <Users className="w-5 h-5" />
-      case "suite":
-        return <Star className="w-5 h-5" />
-      default:
-        return <Bed className="w-5 h-5" />
-    }
-  }
-
-  const handleLoadingComplete = () => {
-    setIsLoading(false)
-    setContentReady(true)
-  }
-
   if (isLoading || !contentReady) {
-    return <CustomLoader isLoading={isLoading} onLoadingComplete={handleLoadingComplete} />
+    return <CustomLoader isLoading={isLoading} onLoadingComplete={() => setContentReady(true)} />
   }
 
   return (
@@ -243,21 +142,21 @@ export default function RoomsComponent() {
       <section className="relative py-20 bg-linear-to-br from-red-50 to-red-100">
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-          style={{
-            backgroundImage: "url('/executive-suite.jpg')",
-          }}
+          style={{ backgroundImage: "url('/executive-suite.jpg')" }}
         />
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-red-700 mb-6 text-balance">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold text-red-700 mb-6">
             Our <span className="text-red-900 underline">Rooms & Suites</span>
           </h1>
-          <p className="text-lg md:text-xl text-red-800 mb-8 text-pretty max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-red-800 max-w-3xl mx-auto">
             Choose from our carefully designed accommodations, each offering comfort, luxury, and exceptional service.
           </p>
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* MAIN CONTENT */}
+      <section className="max-w-7xl mx-auto px-4 py-8">
+
         {/* Filter section - keeping your existing filter code */}
         <div className="mb-8 bg-white rounded-xl shadow-lg border border-red-100 overflow-hidden">
           {/* Mobile-First Compact Header */}
@@ -268,109 +167,92 @@ export default function RoomsComponent() {
             </h2>
           </div>
 
-          <div className="p-4">
-            {/* Mobile: Stack filters vertically with better spacing */}
-
-            <div className="md:hidden space-y-4">
-              {/* Search - Full width on mobile */}
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-red-600 w-4 h-4 z-10" />
+          {/* Filter Controls */}
+            <div className="lg:flex p-4 items-center justify-left">
+              <div className="relative flex lg:mr-4">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-red-600 w-4 h-4 z-10" />
                 <Input
                   placeholder="Search rooms..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 h-11 border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30 text-base rounded-lg"
+                  className="pl-10 pr-10 h-11 lg:w-3xl border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30 text-base rounded-lg"
                 />
+                {searchTerm && (
+                  <CircleX
+                    onClick={() => setSearchTerm("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-red-700 hover:text-red-400 w-5 h-5 z-10 cursor-pointer"
+                  />
+                )}
               </div>
 
-              {/* Responsive horizontal scroll for filters on mobile */}
-              <div className="flex overflow-x-auto pb-1 -mx-2 px-2 scrollbar-thin scrollbar-thumb-red-200">
-                <div className="min-w-[150px] flex-1">
+              {/* Room Type Filter */}
+              <div className="flex py-2 lg:py-0 lg:px-2">
+                <div className="relative mr-1">
                   <Select value={typeFilter} onValueChange={setTypeFilter}>
-                    <SelectTrigger className="h-11 w-full border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30 text-base rounded-lg">
+                    <SelectTrigger className="items-center justify-center h-11 max-w-md border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30 text-base rounded-lg">
                       <div className="flex items-center">
                         <Bed className="w-4 h-4 mr-2 text-red-600" />
                         <SelectValue placeholder="Room Type" />
                       </div>
                     </SelectTrigger>
-                    <SelectContent>
+
+                    <SelectContent className="max-w-md">
                       <SelectItem value="all">All Types</SelectItem>
-                      <SelectItem value="single">
-                        <div className="flex items-center">
-                          <Bed className="w-4 h-4 mr-2" />
-                          Single
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="double">
-                        <div className="flex items-center">
-                          <Users className="w-4 h-4 mr-2" />
-                          Double
-                        </div>
-                      </SelectItem>
-                      <SelectItem value="suite">
-                        <div className="flex items-center">
-                          <Star className="w-4 h-4 mr-2" />
-                          Suite
-                        </div>
-                      </SelectItem>
+                      <SelectItem value="single">Single</SelectItem>
+                      <SelectItem value="double">Double</SelectItem>
+                      <SelectItem value="suite">Suite</SelectItem>
                     </SelectContent>
                   </Select>
+
+                  {/* Clear button inside the select box */}
+                  {typeFilter !== "all" && (
+                    <CircleX
+                      onClick={() => setTypeFilter("all")}
+                      className="absolute max-w-md right-3 top-1/2 -translate-y-1/2 text-red-700 hover:text-red-400 w-5 h-5 cursor-pointer"
+                    />
+                  )}
                 </div>
 
-                <div className="min-w-[150px] flex-1">
+                {/* Price Range Filter */}
+                <div className="relative">
                   <Select value={priceFilter} onValueChange={setPriceFilter}>
-                    <SelectTrigger className="h-11 w-full border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30 text-base rounded-lg">
+                    <SelectTrigger className="h-11 border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30 text-base rounded-lg">
                       <div className="flex items-center">
-                        <span className="text-red-600 mr-2">₱</span>
+                        <span className="text-red-600 mr-1">₱</span>
                         <SelectValue placeholder="Price Range" />
                       </div>
                     </SelectTrigger>
+
                     <SelectContent>
                       <SelectItem value="all">All Prices</SelectItem>
-                      <SelectItem value="budget">Budget (₱0-₱150)</SelectItem>
-                      <SelectItem value="mid">Mid (₱151-₱300)</SelectItem>
-                      <SelectItem value="luxury">Luxury (₱300+)</SelectItem>
+                      <SelectItem value="budget">
+                        Budget&nbsp;
+                        <span className="text-xs">(₱0–₱150)</span>
+                      </SelectItem>
+                      <SelectItem value="mid">
+                        Mid&nbsp;
+                        <span className="text-xs">(₱151–₱300)</span>
+                      </SelectItem>
+                      <SelectItem value="luxury">
+                        Luxury&nbsp;
+                        <span className="text-xs">(₱300+)</span>
+                      </SelectItem>
                     </SelectContent>
                   </Select>
+
+                  {/* Clear button INSIDE the select box */}
+                  {priceFilter !== "all" && (
+                    <CircleX
+                      onClick={() => setPriceFilter("all")}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-red-700 hover:text-red-400 w-5 h-5 cursor-pointer"
+                    />
+                  )}
                 </div>
               </div>
 
               {/* Active filters display */}
               {(searchTerm || typeFilter !== "all" || priceFilter !== "all") && (
-                <div className="flex flex-wrap gap-2">
-                  {searchTerm && (
-                    <Badge variant="secondary" className="bg-green-100 text-red-800 flex items-center gap-1">
-                      Search: {searchTerm}
-                      <button onClick={() => setSearchTerm("")} className="ml-1 hover:bg-red-200 rounded-full p-0.5">
-                        ×
-                      </button>
-                    </Badge>
-                  )}
-                  {typeFilter !== "all" && (
-                    <Badge variant="secondary" className="bg-red-100 text-red-800 flex items-center gap-1">
-                      {typeFilter === "single" && <Bed className="w-3 h-3" />}
-                      {typeFilter === "double" && <Users className="w-3 h-3" />}
-                      {typeFilter === "suite" && <Star className="w-3 h-3" />}
-                      {typeFilter.charAt(0).toUpperCase() + typeFilter.slice(1)}
-                      <button
-                        onClick={() => setTypeFilter("all")}
-                        className="ml-1 hover:bg-green-200 rounded-full p-0.5"
-                      >
-                        ×
-                      </button>
-                    </Badge>
-                  )}
-                  {priceFilter !== "all" && (
-                    <Badge variant="secondary" className="bg-green-100 text-red-800 flex items-center gap-1">
-                      ₱ {priceFilter === "budget" ? "Budget" : priceFilter === "mid" ? "Mid-range" : "Luxury"}
-                      <button
-                        onClick={() => setPriceFilter("all")}
-                        className="ml-1 hover:bg-green-200 rounded-full p-0.5"
-                      >
-                        ×
-                      </button>
-                    </Badge>
-                  )}
+                <div className="flex flex-wrap gap-2 mt-4 lg:mt-0 lg:ml-4 items-center">
                   <Button
                     variant="ghost"
                     size="sm"
@@ -379,201 +261,18 @@ export default function RoomsComponent() {
                       setTypeFilter("all")
                       setPriceFilter("all")
                     }}
-                    className="text-red-700 hover:bg-red-50 text-xs h-6 px-2"
+                    className="text-red-700 hover:bg-red-50 text-md"
                   >
                     Clear All
                   </Button>
                 </div>
               )}
             </div>
-
-            {/* Desktop: Modern engaging design */}
-            <div className="hidden md:block">
-              <div className="max-w-6xl mx-auto relative overflow-hidden">
-
-                <div className="relative z-10">
-                  <div className="flex lg:flex-wrap gap-6 items-end">
-                    {/* Search Input - More prominent */}
-                    <div className="flex-1 min-w-[280px] space-y-2">
-                      <Label className="text-red-900 font-bold text-sm flex items-center gap-2">
-                        <div className="p-1.5 bg-red-100 rounded-lg">
-                          <Search className="w-4 h-4 text-red-800" />
-                        </div>
-                        Search Rooms
-                      </Label>
-                      <div className="relative group">
-                        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-red-500 w-5 h-5 group-focus-within:text-red-700 group-focus-within:scale-110 transition-all duration-200" />
-                        <Input
-                          placeholder="Find your perfect room..."
-                          value={searchTerm}
-                          onChange={(e) => setSearchTerm(e.target.value)}
-                          className="pl-12 pr-4 h-14 border-2 border-red-200/60 focus:border-red-400 focus:ring-2 focus:ring-red-200 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 rounded-xl font-medium text-gray-800 placeholder:text-gray-500"
-                        />
-                      </div>
-                    </div>
-
-                    {/* Room Type Filter */}
-                    <div className="space-y-2 min-w-[180px]">
-                      <Label className="text-red-900 font-bold text-sm flex items-center gap-2">
-                        <div className="p-1.5 bg-red-100 rounded-lg">
-                          <Bed className="w-4 h-4 text-red-800" />
-                        </div>
-                        Room Type
-                      </Label>
-                      <Select value={typeFilter} onValueChange={setTypeFilter}>
-                        <SelectTrigger className="h-14 border-2 border-red-200/60 focus:border-red-400 focus:ring-2 focus:ring-red-200 bg-white/80 transition-all duration-300 rounded-xl">
-                          <div className="flex items-center gap-3">
-                            {typeFilter === "single" && <Bed className="w-5 h-5 text-red-800" />}
-                            {typeFilter === "double" && <Users className="w-5 h-5 text-red-800" />}
-                            {typeFilter === "suite" && <Star className="w-5 h-5 text-red-800" />}
-                            {typeFilter === "all" && <Filter className="w-5 h-5 text-red-800" />}
-                            <SelectValue placeholder="All Types" />
-                          </div>
-                        </SelectTrigger>
-                        <SelectContent className="bg-white/95 backdrop-blur-sm border-blue-200 shadow-2xl rounded-xl">
-                          <SelectItem value="all" className="hover:bg-blue-50 rounded-lg m-1">
-                            <div className="flex items-center gap-3 py-1">
-                              <span className="font-medium">All Types</span>
-                            </div>
-                          </SelectItem>
-                          <SelectItem value="single" className="hover:bg-blue-50 rounded-lg m-1">
-                            <div className="flex items-center gap-3 py-1">
-                              <span className="font-medium">Single Rooms</span>
-                            </div>
-                          </SelectItem>
-                          <SelectItem value="double" className="hover:bg-blue-50 rounded-lg m-1">
-                            <div className="flex items-center gap-3 py-1">
-                              <span className="font-medium">Double Rooms</span>
-                            </div>
-                          </SelectItem>
-                          <SelectItem value="suite" className="hover:bg-blue-50 rounded-lg m-1">
-                            <div className="flex items-center gap-3 py-1">
-                              <span className="font-medium">Luxury Suites</span>
-                            </div>
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    {/* Price Range Filter */}
-                    <div className="space-y-2 min-w-[180px]">
-                      <Label className="text-red-900 font-bold text-sm flex items-center gap-2">
-                        <div className="bg-red-100 rounded-lg w-7 h-7 text-center flex items-center justify-center">
-                          <span className="text-red-800 font-medium text-sm">₱</span>
-                        </div>
-                        Price Range
-                      </Label>
-                      <Select value={priceFilter} onValueChange={setPriceFilter}>
-                        <SelectTrigger className="h-14 border-2 border-red-200/60 focus:border-red-400 focus:ring-2 focus:ring-red-200 bg-white/80 transition-all duration-300 rounded-xl">
-                          <div className="flex items-center gap-3">
-                            <span className="text-red-800 text-lg">₱</span>
-                            <SelectValue placeholder="All Prices" />
-                          </div>
-                        </SelectTrigger>
-                        <SelectContent className="bg-white/95 backdrop-blur-sm border-red-200 shadow-2xl rounded-xl">
-                          <SelectItem value="all" className="hover:bg-red-50 rounded-lg m-1">
-                            <div className="flex items-center gap-3 py-1">
-                              <span className="font-medium">All Prices</span>
-                            </div>
-                          </SelectItem>
-                          <SelectItem value="budget" className="hover:bg-red-50 rounded-lg m-1">
-                            <div className="flex items-center gap-3 py-1">
-                              <div>
-                                <span className="font-medium">Budget</span>
-                                <div className="text-xs text-gray-500">₱0 - ₱150</div>
-                              </div>
-                            </div>
-                          </SelectItem>
-                          <SelectItem value="mid" className="hover:bg-yellow-50 rounded-lg m-1">
-                            <div className="flex items-center gap-3 py-1">
-                              <div>
-                                <span className="font-medium">Mid-Range</span>
-                                <div className="text-xs text-gray-500">₱151 - ₱300</div>
-                              </div>
-                            </div>
-                          </SelectItem>
-                          <SelectItem value="luxury" className="hover:bg-yellow-50 rounded-lg m-1">
-                            <div className="flex items-center gap-3 py-1">
-                              <div>
-                                <span className="font-medium">Luxury</span>
-                                <div className="text-xs text-gray-500">₱300+</div>
-                              </div>
-                            </div>
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Active Filters - Modern pill design */}
-                {(searchTerm || typeFilter !== "all" || priceFilter !== "all") && (
-                  <div className="mt-8 p-6 bg-linear-to-r from-gray-50/80 to-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/60">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 bg-linear-to-r from-red-500 to-red-600 rounded-xl">
-                        <Filter className="w-4 h-4 text-white" />
-                      </div>
-                      <span className="text-lg font-bold text-gray-800">Active Filters</span>
-                    </div>
-                    <div className="flex flex-wrap gap-3">
-                      {searchTerm && (
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-red-100 to-red-200 text-red-800 border-2 border-red-300/50 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
-                          <Search className="w-4 h-4" />
-                          <span className="font-semibold">&quot;{searchTerm}&quot;</span>
-
-                          <button
-                            onClick={() => setSearchTerm("")}
-                            className="ml-1 p-1 hover:bg-red-300 rounded-full text-red-700 transition-colors"
-                          >
-                            ×
-                          </button>
-                        </div>
-                      )}
-                      {typeFilter !== "all" && (
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-red-100 to-red-200 text-red-800 border-2 border-red-300/50 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
-                          {typeFilter === "single" && <Bed className="w-4 h-4" />}
-                          {typeFilter === "double" && <Users className="w-4 h-4" />}
-                          {typeFilter === "suite" && <Star className="w-4 h-4" />}
-                          <span className="font-semibold">
-                            {typeFilter.charAt(0).toUpperCase() + typeFilter.slice(1)} Rooms
-                          </span>
-                          <button
-                            onClick={() => setTypeFilter("all")}
-                            className="ml-1 p-1 hover:bg-red-300 rounded-full text-red-700 transition-colors"
-                          >
-                            ×
-                          </button>
-                        </div>
-                      )}
-                      {priceFilter !== "all" && (
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-linear-to-r from-red-100 to-red-200 text-red-800 border-2 border-red-300/50 rounded-full shadow-md hover:shadow-lg transition-all duration-200">
-                          <span className="text-red-800">₱</span>
-                          <span className="font-semibold">
-                            {priceFilter === "budget"
-                              ? "Budget Range"
-                              : priceFilter === "mid"
-                                ? "Mid-Range"
-                                : "Luxury Range"}
-                          </span>
-                          <button
-                            onClick={() => setPriceFilter("all")}
-                            className="ml-1 p-1 hover:bg-red-300 rounded-full text-red-800 transition-colors"
-                          >
-                            ×
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
           </div>
-        </div>
 
-        {/* Rooms Grid */}
+        {/* ROOMS GRID */}
         {filteredRooms.length === 0 ? (
-          <Card className="text-center py-12 border-green-200">
+          <Card className="text-center py-12 border-red-200">
             <CardContent>
               <AlertCircle className="w-12 h-12 text-red-600 mx-auto mb-4" />
               <CardTitle className="mb-2 text-red-800">No rooms found</CardTitle>
@@ -584,71 +283,44 @@ export default function RoomsComponent() {
           </Card>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredRooms.map((room) => (
-              <Card
-                key={room.id}
-                className={`overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col p-0 border-red-200 hover:border-red-400 ${
-                  selectedRoom?.id === room.id ? "" : ""
-                } ${!room.available ? "opacity-60" : ""}`}
-              >
-                <div
-                  className="h-48 bg-cover bg-center relative"
-                  style={{
-                    backgroundImage: `url('${room.image}')`,
-                  }}
-                >
-                  <div className="absolute top-4 left-4">
-                    <Badge
-                      className={
-                        room.available
-                          ? "bg-green-600/90 text-white backdrop-blur-sm"
-                          : "bg-red-500/90 text-white backdrop-blur-sm"
-                      }
-                      variant={room.available ? "default" : "secondary"}
-                    >
-                      {room.available ? "Available" : "Booked"}
+          {filteredRooms.map((room) => (
+            <Card
+              key={room.id}
+              className="overflow-hidden transition-all duration-300 hover:shadow-xl flex flex-col p-0 border-red-200 hover:border-red-400"
+              onClick={() => handleSelectRoom(room)}
+            >
+              <div
+                className="h-48 bg-cover bg-center relative opacity-90"
+                style={{ backgroundImage: `url(${room.image})` }}
+              />
+                        
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-cl sm:text-2xl text-red-800">
+                  {room.type === "single" && <BedSingle className="w-5 h-5" />}
+                  {room.type === "double" && <BedDouble className="w-5 h-5" />}
+                  {room.type === "suite" && <Star className="w-5 h-5" />}
+                  {room.name}
+                </CardTitle>
+                <CardDescription>{room.description}</CardDescription>
+              </CardHeader>
+
+              <CardContent>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {room.amenities.slice(0, 4).map((amenity) => (
+                    <Badge key={amenity} className="flex bg-red-300 text-red-800 items-center gap-1">
+                      {getAmenityIcon(amenity)}
+                      {amenity}
                     </Badge>
-                  </div>
+                  ))}
                 </div>
 
-                <CardHeader className="px-6">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="flex items-center text-xl sm:text-2xl text-red-800">
-                      {getRoomTypeIcon(room.type)}
-                      <span className="ml-2">{room.name}</span>
-                    </CardTitle>
-                    {selectedRoom?.id === room.id && <CheckCircle className="w-5 h-5 text-red-600" />}
-                  </div>
-                  <CardDescription className="text-red-800">{room.description}</CardDescription>
-                </CardHeader>
-
-                <CardContent className="flex-1 flex flex-col px-6 pb-6">
-                  <div className="space-y-2 flex-1">
-                    <div>
-                      <h4 className="font-semibold text-sm mb-2 text-red-800 underline">Amenities:</h4>
-                      <div className="grid grid-cols-2 gap-2 py-2">
-                        {room.amenities.slice(0, 6).map((amenity, index) => (
-                          <div key={index} className="flex items-center text-xs text-muted-foreground">
-                            {getAmenityIcon(amenity)}
-                            <span className="ml-1 truncate">{amenity}</span>
-                          </div>
-                        ))}
-                      </div>
-                      {room.amenities.length > 6 && (
-                        <p className="text-xs text-muted-foreground mt-2">
-                          +{room.amenities.length - 6} more amenities
-                        </p>
-                      )}
-                    </div>
+                <div className="flex items-center justify-between py-2 pb-3 border-t border-red-200 mt-auto">
+                  <div className="text-2xl font-bold text-red-900">
+                    ₱{room.price}
+                    <span className="text-sm text-red-700 font-normal">/night</span>
                   </div>
 
-                  <div className="flex items-center justify-between pt-4 border-t border-red-200 mt-auto">
-                    <div className="text-2xl font-bold text-red-900">
-                      ₱{room.price}
-                      <span className="text-sm text-red-700 font-normal">/night</span>
-                    </div>
-
-                    {room.available ? (
+                  {room.available ? (
                       user ? (
                         <Link href={`/rooms/${room.id}`}>
                           <Button
@@ -673,13 +345,13 @@ export default function RoomsComponent() {
                         Not Available
                       </Button>
                     )}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        )}
-      </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+         )}
+      </section>
 
       <SectionDivider />
       <AmenitiesSection />
