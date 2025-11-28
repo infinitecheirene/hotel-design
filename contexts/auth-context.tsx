@@ -10,8 +10,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null
-  login: (name: string, password: string) => Promise<boolean>
-  /** set user directly on the client provider and persist to localStorage */
+  login: (identifier: string, password: string) => Promise<boolean>
   setUserData: (user: User | null) => void
   logout: () => Promise<void>
   isLoading: boolean
@@ -23,47 +22,58 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
+  // Load stored token and fetch user from Laravel
   useEffect(() => {
-    // Check for stored user session on mount.
-    // Support both older `user` key and current `eurotel_user` to remain compatible.
-    const storedEurotel = localStorage.getItem("eurotel_user")
-    const storedUser = localStorage.getItem("user")
+    const token = localStorage.getItem("eurotel_token")
 
-    const raw = storedEurotel ?? storedUser
-    if (raw) {
-      try {
-        setUser(JSON.parse(raw))
-      } catch (error) {
-        // Cleanup invalid entries
-        localStorage.removeItem("eurotel_user")
-        localStorage.removeItem("user")
-      }
+    if (token) {
+      fetch("http://127.0.0.1:8000/api/auth/me", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
+      })
+        .then(async (res) => {
+          if (res.ok) {
+            setUser(await res.json())
+          } else {
+            localStorage.removeItem("eurotel_token")
+          }
+        })
+        .catch(() => {
+          localStorage.removeItem("eurotel_token")
+        })
+        .finally(() => setIsLoading(false))
+    } else {
+      setIsLoading(false)
     }
-    setIsLoading(false)
   }, [])
 
-  const login = async (name: string, password: string): Promise<boolean> => {
+  // LOGIN
+  const login = async (identifier: string, password: string): Promise<boolean> => {
     setIsLoading(true)
+
     try {
-      const response = await fetch("/api/auth/login", {
+      const response = await fetch("http://127.0.0.1:8000/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
-        body: JSON.stringify({ name, password }),
+        body: JSON.stringify({ identifier, password }),
       })
 
-      if (response.ok) {
-        const userData = await response.json()
-        setUser(userData.user)
-        // persist under `eurotel_user` (new canonical key) and `user` for compatibility
-        localStorage.setItem("eurotel_user", JSON.stringify(userData.user))
-        try {
-          localStorage.setItem("user", JSON.stringify(userData.user))
-        } catch {}
-        return true
-      }
-      return false
+      if (!response.ok) return false
+
+      const data = await response.json()
+
+      // store token only
+      localStorage.setItem("eurotel_token", data.token)
+
+      setUser(data.user)
+
+      return true
     } catch (error) {
       console.error("Login error:", error)
       return false
@@ -74,40 +84,41 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const setUserData = (u: User | null) => {
     setUser(u)
-    if (u) {
-      try {
-        localStorage.setItem("eurotel_user", JSON.stringify(u))
-        localStorage.setItem("user", JSON.stringify(u))
-      } catch {}
-    } else {
-      localStorage.removeItem("eurotel_user")
-      localStorage.removeItem("user")
-    }
   }
 
-  const logout = async (): Promise<void> => {
+  // LOGOUT
+  const logout = async () => {
     setIsLoading(true)
+
     try {
-      await fetch("/api/auth/logout", {
+      const token = localStorage.getItem("eurotel_token")
+
+      await fetch("http://127.0.0.1:8000/api/auth/logout", {
         method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "application/json",
+        },
       })
     } catch (error) {
       console.error("Logout error:", error)
     } finally {
+      localStorage.removeItem("eurotel_token")
       setUser(null)
-      // remove both keys for safety
-      localStorage.removeItem("eurotel_user")
-      localStorage.removeItem("user")
       setIsLoading(false)
     }
   }
 
-  return <AuthContext.Provider value={{ user, login, setUserData, logout, isLoading }}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={{ user, login, setUserData, logout, isLoading }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export function useAuth() {
   const context = useContext(AuthContext)
-  if (context === undefined) {
+  if (!context) {
     throw new Error("useAuth must be used within an AuthProvider")
   }
   return context
