@@ -468,10 +468,10 @@ export default function ContactPage() {
                     Book Now
                   </button>
                 </Link>
-                <Link href="/contact">
+                <Link href="/about">
                   <button
                     className="w-46 h-16 px-10 py-4 rounded-sm font-medium text-lg transition-all duration-500 border-2 border-red-800/40 text-gray-200 bg-red-800/30 backdrop-blur-sm hover:bg-red-800 hover:border-red-800 transform hover:scale-105">
-                    Contact Us
+                    Learn More
                   </button>
                 </Link>
               </div>

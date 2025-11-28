@@ -154,6 +154,8 @@ export default function RoomsComponent() {
         </div>
       </section>
 
+{/* Need to fix the room visibility when guest view mode */}
+
       {/* MAIN CONTENT */}
       <section className="max-w-7xl mx-auto px-4 py-8">
 
@@ -168,8 +170,8 @@ export default function RoomsComponent() {
           </div>
 
           {/* Filter Controls */}
-            <div className="lg:flex p-4 items-center justify-left">
-              <div className="relative flex lg:mr-4">
+            <div className="md:flex p-4 items-center justify-left">
+              <div className="relative flex lg:mr-0 md:mr-3">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-red-600 w-4 h-4 z-10" />
                 <Input
                   placeholder="Search rooms..."
@@ -186,10 +188,10 @@ export default function RoomsComponent() {
               </div>
 
               {/* Room Type Filter */}
-              <div className="flex py-2 lg:py-0 lg:px-2">
+              <div className="flex lg:px-2">
                 <div className="relative mr-1">
                   <Select value={typeFilter} onValueChange={setTypeFilter}>
-                    <SelectTrigger className="items-center justify-center h-11 max-w-md border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30 text-base rounded-lg">
+                    <SelectTrigger className="items-center justify-center max-w-md border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30 text-base rounded-lg">
                       <div className="flex items-center">
                         <Bed className="w-4 h-4 mr-2 text-red-600" />
                         <SelectValue placeholder="Room Type" />
@@ -216,7 +218,7 @@ export default function RoomsComponent() {
                 {/* Price Range Filter */}
                 <div className="relative">
                   <Select value={priceFilter} onValueChange={setPriceFilter}>
-                    <SelectTrigger className="h-11 border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30 text-base rounded-lg">
+                    <SelectTrigger className="border-red-200 focus:border-red-500 focus:ring-red-500 bg-red-50/30 text-base rounded-lg">
                       <div className="flex items-center">
                         <span className="text-red-600 mr-1">₱</span>
                         <SelectValue placeholder="Price Range" />
@@ -252,7 +254,7 @@ export default function RoomsComponent() {
 
               {/* Active filters display */}
               {(searchTerm || typeFilter !== "all" || priceFilter !== "all") && (
-                <div className="flex flex-wrap gap-2 mt-4 lg:mt-0 lg:ml-4 items-center">
+                <div className="flex gap-2 lg:mt-0 lg:ml-1 items-center">
                   <Button
                     variant="ghost"
                     size="sm"
@@ -261,9 +263,10 @@ export default function RoomsComponent() {
                       setTypeFilter("all")
                       setPriceFilter("all")
                     }}
-                    className="text-red-700 hover:bg-red-50 text-md"
+                    className="text-red-700 hover:text-red-800 bg-red-300 hover:bg-red-200 text-md"
                   >
                     Clear All
+                    <CircleX className=""/>
                   </Button>
                 </div>
               )}
